@@ -22,7 +22,7 @@ jobs:
           XCODE=$(python3 - <<'PY'
           import glob, re
           paths = [p for p in glob.glob('/Applications/Xcode_*.app') if re.search(r'Xcode_\d+(?:\.\d+)*\.app$', p)]
-          print(max(paths, key=lambda p: tuple(map(int, re.search(r'Xcode_([\d.]+)', p)[1].split('.')))))
+          print(max(paths, key=lambda p: tuple(map(int, re.search(r'Xcode_(\d+(?:\.\d+)*)\.app$', p)[1].split('.')))))
           PY
           )
           sudo xcode-select -s "$XCODE/Contents/Developer"
