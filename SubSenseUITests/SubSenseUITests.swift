@@ -111,7 +111,7 @@ final class SubSenseUITests: XCTestCase {
     @MainActor func testDarkModeLargeTextAndLandscape() {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launchArguments = ["--demo", "-AppleInterfaceStyle", "Dark", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launchArguments = ["--demo", "--uitesting-dark", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
         app.launch()
         XCTAssertTrue(app.buttons["Home"].firstMatch.waitForExistence(timeout: 20))
         capture("accessibility-home-dark", app)
@@ -122,6 +122,8 @@ final class SubSenseUITests: XCTestCase {
         app.buttons["Done"].tap()
         XCUIDevice.shared.orientation = .landscapeLeft
         defer { XCUIDevice.shared.orientation = .portrait }
+        let rotated = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width > app.frame.height }, object: app)
+        XCTAssertEqual(XCTWaiter.wait(for: [rotated], timeout: 10), .completed)
         XCTAssertTrue(app.buttons["Home"].firstMatch.waitForExistence(timeout: 5)); app.buttons["Home"].firstMatch.tap()
         capture("accessibility-landscape-dark", app)
     }

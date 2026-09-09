@@ -16,6 +16,9 @@ struct SubSenseApp: App {
                     } description: { Text(startupError) } actions: { Button("Try again", action: load) }
                 } else { ProgressView("Opening SubSense…").task { load() } }
             }.tint(Theme.accent)
+            #if DEBUG
+            .preferredColorScheme(ProcessInfo.processInfo.arguments.contains("--uitesting-dark") ? .dark : nil)
+            #endif
         }
     }
     private func load() {
@@ -66,7 +69,7 @@ struct RootView: View {
                 VStack(spacing: 0) {
                     if model.isDemo {
                         HStack { Label("DEMO · Illustrative prices", systemImage: "eye"); Spacer(); Button("Exit") { model.endDemo() } }
-                            .font(.caption.weight(.semibold)).padding(.horizontal, 20).padding(.vertical, 9).background(Theme.mint).foregroundStyle(Theme.ink)
+                            .font(.caption.weight(.semibold)).dynamicTypeSize(...DynamicTypeSize.xxxLarge).padding(.horizontal, 20).padding(.vertical, 9).background(Theme.mint).foregroundStyle(Theme.ink)
                     }
                 TabView(selection: $tab) {
                     NavigationStack { HomeView() }.tabItem { Label("Home", systemImage: "square.grid.2x2") }.tag(0)
