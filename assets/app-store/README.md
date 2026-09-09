@@ -19,12 +19,12 @@ The `App Store screenshot capture` GitHub workflow runs the native app in iPhone
 
 The source PNGs are in `raw/` and `raw-ipad/`. The compositor preserves each full screenshot without retouching app content. Open `index.html` for the visual gallery.
 
-The eight iPhone screenshots come from commit `4db1e84`, from the successful iPhone job in [run 34338422400](https://github.com/lanray07/SubSense-AI/actions/runs/34338422400). The overall matrix run failed in its iPad calendar path.
+All eight screenshots per device were recaptured from commit `1d4631c` in successful [run 34375255138](https://github.com/lanray07/SubSense-AI/actions/runs/34375255138), after the calendar layout and profile-label fixes.
 
-iPad images 01–04 come from commit `e517de0` in [run 34337656777](https://github.com/lanray07/SubSense-AI/actions/runs/34337656777), captured and visually verified before the calendar crash. Images 05–08 come from commit `f5c708b` in the successful eight-screen iPad [run 34338702773](https://github.com/lanray07/SubSense-AI/actions/runs/34338702773). The intervening changes affect capture tests and workflow selection, not app behavior.
+Later app changes improve StoreKit startup, accessibility-sized demo status and receipt keyboard dismissal; they do not change these default-size store panels.
 
-All eight images per device were uploaded to the English (U.S.) iPhone 6.5-inch and iPad 13-inch screenshot sets on 9 September 2026, in filename order. Both 1024-square subscription artworks are uploaded to their respective product Image fields. See [capture notes](CAPTURE_NOTES.md) for the unresolved iPad calendar crash that needs fixing before release. Screenshot capture checks do not certify the full app for release.
+All eight images per device are supplied for the English (U.S.) iPhone 6.5-inch and iPad 13-inch screenshot sets. Both 1024-square subscription artworks are uploaded to their respective product Image fields. See [capture notes](CAPTURE_NOTES.md) for the resolved calendar crash. Screenshot capture checks do not certify the full app for release.
 
 Subscription Review Information → Screenshot uses the raw Pro paywall capture, not the square promotional artwork. App previews are videos and are separate from screenshot images.
 
-`raw/review-pro-features.png` and `raw/review-pro-purchase.png` were captured from commit `5fb4e54` in successful [workflow run 34335017085](https://github.com/lanray07/SubSense-AI/actions/runs/34335017085). The capture explicitly loads local StoreKit test products, priced to match the configured UK monthly (£1.49) and annual (£9.99) products. This verifies the screenshot contents, not live App Store billing. The purchase capture shows both plans and renewal terms and is used for both products' review screenshot fields.
+`raw/review-pro-features.png` and `raw/review-pro-purchase.png` were refreshed from the passing screenshot test on iPhone 16 Pro, iOS 18, in [run 34373542156](https://github.com/lanray07/SubSense-AI/actions/runs/34373542156). They are 1206 × 2622 native captures. The local StoreKit products match the configured UK monthly (£1.49) and annual (£9.99) prices. This verifies screenshot contents, not live App Store billing. The purchase capture shows both plans and renewal terms and is uploaded to both products' review screenshot fields.

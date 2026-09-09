@@ -2,8 +2,8 @@
 
 The iPad demo banner originally overlapped iPadOS 18's top tab navigation. Commit e517de0 places the banner above the TabView. Native screenshots verify that the navigation is fully visible after this change.
 
-## Unresolved iPad calendar crash
+## Calendar crash resolved
 
-Opening Upcoming charges from Home in the iPad Pro 13-inch (M4), iOS 18.5 simulator unexpectedly terminates the app. This reproduced in screenshot workflow runs 34336535773 and 34337656777. The test log reports inability to monitor the event loop, then checks for crash reports for com.subsense.app. The recording returns to the iPad Home screen. The underlying cause has not yet been identified.
+The earlier calendar crash came from a UIKit recursive self-sizing layout loop: the calendar's lazy grid was inside a SwiftUI List. Commit 93ad910 moves the calendar into a scroll view with explicit cards. Calendar navigation, month changes and timeline/upcoming modes pass on iPhone and iPad with both iOS 18 and 26 in [run 34373542156](https://github.com/lanray07/SubSense-AI/actions/runs/34373542156). That run identified separate acceptance-test failures, so it is not the final release gate.
 
-This is a release blocker for the calendar on iPad, separate from delivery of App Store image assets. The iPad store collection uses actual working pages rather than showing an invented calendar screen. Capture tests do not certify the full app for release.
+All eight screenshots per device were recaptured successfully in [run 34375255138](https://github.com/lanray07/SubSense-AI/actions/runs/34375255138). The iPhone collection shows the repaired calendar; iPad retains its complementary detail, settings, goals and reminders collection. Capture tests do not certify the full app for release; see docs/VALIDATION.md for acceptance results.
