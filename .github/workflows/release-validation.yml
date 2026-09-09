@@ -16,12 +16,12 @@ on:
         description: Xcode pairing for older-runtime diagnostics
         type: choice
         default: current
-        options: [current, paired]
+        options: [current, paired, legacy]
 permissions:
   contents: read
 jobs:
   validate:
-    runs-on: macos-15
+    runs-on: ${{ inputs.toolchain == 'legacy' && matrix.os == '18' && 'macos-14' || 'macos-15' }}
     timeout-minutes: 35
     strategy:
       fail-fast: false
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Select Xcode
         env:
-          XCODE_VERSION: ${{ inputs.toolchain == 'paired' && matrix.os == '18' && '16.4' || '26.3' }}
+          XCODE_VERSION: ${{ inputs.toolchain == 'legacy' && matrix.os == '18' && '16.2' || inputs.toolchain == 'paired' && matrix.os == '18' && '16.4' || '26.3' }}
         run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
       - name: Core tests
         run: swift test
@@ -40,9 +40,10 @@ jobs:
         timeout-minutes: 9
         env:
           OS_MAJOR: ${{ matrix.os }}
+          OS_PREFIX: ${{ inputs.toolchain == 'legacy' && matrix.os == '18' && '18.2' || format('{0}.', matrix.os) }}
           DEVICE_TYPE: ${{ matrix.device }}
         run: |
-          RUNTIME=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys,os; print(next(r["identifier"] for r in json.load(sys.stdin)["runtimes"] if r["isAvailable"] and r["name"].startswith("iOS " + os.environ["OS_MAJOR"] + ".")))')
+          RUNTIME=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys,os; print(next(r["identifier"] for r in json.load(sys.stdin)["runtimes"] if r["isAvailable"] and r["name"].startswith("iOS " + os.environ["OS_PREFIX"])))')
           DEVICE=$(xcrun simctl create 'SubSense Release Validation' "com.apple.CoreSimulator.SimDeviceType.$DEVICE_TYPE" "$RUNTIME")
           echo "SIMULATOR_ID=$DEVICE" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEVICE"
@@ -79,7 +80,7 @@ jobs:
             -default-test-execution-time-allowance 240 -maximum-test-execution-time-allowance 300 \
             -resultBundlePath ReleaseTests \
             "${TEST_SELECTION[@]}" \
-            ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test 2>&1 | tee tests.log
+            ARCHS="$(uname -m)" ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test 2>&1 | tee tests.log
       - name: Collect screenshots and crash diagnostics
         if: always()
         run: |
