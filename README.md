@@ -2,7 +2,7 @@
 
 Native iPhone and iPad subscription manager and savings copilot. SwiftUI, SwiftData, Apple Charts, StoreKit 2, Vision and local notifications. Minimum iOS 17. No runtime third-party dependencies or embedded credentials.
 
-**Build status:** The portable Swift package compiles and its tests pass on Windows. App sources pass a Swift syntax parse. The iOS target has **not** been compiled or run against an Apple SDK in this environment; Xcode and the simulator are unavailable on Windows. This is a substantial local-first implementation, **not a verified App Store-ready release**. See [validation and release work](docs/VALIDATION.md).
+**Build status:** The portable Swift tests, native simulator build, and device Release archive have passed on GitHub's macOS runners. Native screenshot captures have also passed on iPhone and iPad. Xcode is unavailable on the local Windows host, so Apple builds run remotely. Known UI failures remain; this is **not a verified App Store-ready release**. See [validation and release work](docs/VALIDATION.md) and [GitHub distribution](docs/GITHUB_DISTRIBUTION.md).
 
 ## Open on a Mac
 
@@ -20,7 +20,7 @@ xcodebuild -project SubSense.xcodeproj -scheme SubSense \
   -destination 'platform=iOS Simulator,name=<installed iPhone simulator>' test
 ```
 
-The GitHub workflow runs core tests, builds the iOS app and runs UI tests with screenshot attachments on macOS. On 9 September 2026, the native simulator build and dedicated App Store screenshot capture passed remotely. The broader UI suite still has a failing add-subscription test (the Save button was not found); a successful screenshot capture is not a full release certification. A signed distribution build has not been uploaded to App Store Connect.
+The GitHub workflow runs core tests, builds the iOS app and runs UI tests with screenshot attachments on macOS. On 9 September 2026, the native simulator build and dedicated App Store screenshot capture passed remotely. The broader UI suite still has failures in add-subscription and calendar navigation; a successful screenshot capture is not a full release certification. Xcode 26.3 successfully archived, signed, and uploaded version 1.0, build 2.1 to App Store Connect in [distribution run 34340054417](https://github.com/lanray07/SubSense-AI/actions/runs/34340054417). This upload does not submit the app for review or release it.
 
 On this Windows installation, SwiftPM needs a scratch path outside the spaced workspace path:
 
