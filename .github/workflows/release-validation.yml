@@ -37,6 +37,7 @@ jobs:
       - name: Core tests
         run: swift test
       - name: Create simulator
+        timeout-minutes: 9
         env:
           OS_MAJOR: ${{ matrix.os }}
           DEVICE_TYPE: ${{ matrix.device }}
@@ -45,7 +46,17 @@ jobs:
           DEVICE=$(xcrun simctl create 'SubSense Release Validation' "com.apple.CoreSimulator.SimDeviceType.$DEVICE_TYPE" "$RUNTIME")
           echo "SIMULATOR_ID=$DEVICE" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEVICE"
-          xcrun simctl bootstatus "$DEVICE" -b
+          python3 - "$DEVICE" <<'PY'
+          import subprocess, sys
+          device = sys.argv[1]
+          try:
+              subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=180)
+          except subprocess.TimeoutExpired:
+              print("Simulator boot stalled; restarting this test device once.", flush=True)
+              subprocess.run(["xcrun", "simctl", "shutdown", device], check=False, timeout=30)
+              subprocess.run(["xcrun", "simctl", "boot", device], check=True, timeout=30)
+              subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=240)
+          PY
       - name: Native UI tests
         env:
           TEST_SUITE: ${{ inputs.suite }}
