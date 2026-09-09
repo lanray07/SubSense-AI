@@ -32,7 +32,7 @@ final class SubSenseUITests: XCTestCase {
             XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
             if name == "store-06-simulator" {
                 XCTAssertTrue(app.switches.firstMatch.waitForExistence(timeout: 5))
-                app.switches.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+                app.switches.firstMatch.switches.firstMatch.tap()
                 XCTAssertTrue(app.staticTexts["Monthly savings"].waitForExistence(timeout: 5))
             }
             capture(name, app)
