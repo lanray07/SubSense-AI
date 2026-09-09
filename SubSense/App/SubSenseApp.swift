@@ -53,6 +53,11 @@ struct RootView: View {
             } else if !onboarded && !model.isDemo {
                 OnboardingView { onboarded = true }
             } else {
+                VStack(spacing: 0) {
+                    if model.isDemo {
+                        HStack { Label("DEMO · Illustrative prices", systemImage: "eye"); Spacer(); Button("Exit") { model.endDemo() } }
+                            .font(.caption.weight(.semibold)).padding(.horizontal, 20).padding(.vertical, 9).background(Theme.mint).foregroundStyle(Theme.ink)
+                    }
                 TabView(selection: $tab) {
                     NavigationStack { HomeView() }.tabItem { Label("Home", systemImage: "square.grid.2x2") }.tag(0)
                     NavigationStack { SubscriptionsView() }.tabItem { Label("Subscriptions", systemImage: "square.stack") }.tag(1)
@@ -60,11 +65,6 @@ struct RootView: View {
                     NavigationStack { CopilotView() }.tabItem { Label("Copilot", systemImage: "sparkles") }.tag(3)
                     NavigationStack { SettingsView() }.tabItem { Label("Settings", systemImage: "slider.horizontal.3") }.tag(4)
                 }
-                .safeAreaInset(edge: .top, spacing: 0) {
-                    if model.isDemo {
-                        HStack { Label("DEMO · Illustrative prices", systemImage: "eye"); Spacer(); Button("Exit") { model.endDemo() } }
-                            .font(.caption.weight(.semibold)).padding(.horizontal, 20).padding(.vertical, 9).background(Theme.mint).foregroundStyle(Theme.ink)
-                    }
                 }
                 .sheet(item: $model.sheet) { destination in
                     Group {

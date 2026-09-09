@@ -28,11 +28,12 @@ final class SubSenseUITests: XCTestCase {
         ] {
             let button = app.buttons.containing(NSPredicate(format: "label CONTAINS %@", label)).firstMatch
             XCTAssertTrue(button.waitForExistence(timeout: 5))
-            button.tap()
+            app.staticTexts[label].firstMatch.tap()
             XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
             if name == "store-06-simulator" {
                 XCTAssertTrue(app.switches.firstMatch.waitForExistence(timeout: 5))
-                app.switches.firstMatch.tap()
+                app.switches.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+                XCTAssertTrue(app.staticTexts["Monthly savings"].waitForExistence(timeout: 5))
             }
             capture(name, app)
             app.buttons["Done"].firstMatch.tap()
