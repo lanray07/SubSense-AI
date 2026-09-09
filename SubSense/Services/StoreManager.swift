@@ -1,6 +1,9 @@
 import Foundation
 import Observation
 import StoreKit
+#if DEBUG
+import OSLog
+#endif
 
 @MainActor @Observable
 final class StoreManager {
@@ -41,11 +44,28 @@ final class StoreManager {
     func purchase(_ action: @MainActor () async throws -> Product.PurchaseResult) async {
         guard !loading else { return }
         loading = true; message = nil; defer { loading = false }
+        #if DEBUG
+        let diagnostic = Logger(subsystem: "com.subsenseai.app", category: "StoreKitAcceptance")
+        diagnostic.notice("Purchase action requested")
+        #endif
         do {
-            switch try await action() {
+            let result = try await action()
+            #if DEBUG
+            diagnostic.notice("Purchase action returned")
+            #endif
+            switch result {
             case .success(let result):
+                #if DEBUG
+                diagnostic.notice("Purchase success; checking verification")
+                #endif
                 guard case .verified(let transaction) = result else { message = "The purchase could not be verified. Please restore purchases or contact Apple Support."; return }
+                #if DEBUG
+                diagnostic.notice("Purchase verified; refreshing entitlement")
+                #endif
                 await refreshEntitlements(); await transaction.finish()
+                #if DEBUG
+                diagnostic.notice("Entitlement refresh completed")
+                #endif
                 message = hasPro ? "Your Pro access is ready." : "Your purchase is being confirmed. Try Restore Purchases if access doesn't update."
             case .pending: message = "Purchase awaiting approval. Access updates automatically after approval."
             case .userCancelled: break

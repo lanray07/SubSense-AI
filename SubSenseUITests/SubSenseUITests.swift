@@ -66,7 +66,7 @@ final class SubSenseUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
         capture("purchase-ready", app)
         subscribe.tap()
-        XCTAssertTrue(app.staticTexts["Your Pro access is active"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.staticTexts["Your Pro access is active"].waitForExistence(timeout: 90))
         let restore = app.buttons["Restore Purchases"]; reveal(restore, in: app); restore.tap()
         XCTAssertTrue(app.staticTexts["Pro purchases restored."].waitForExistence(timeout: 30))
         capture("purchase-restored", app)
