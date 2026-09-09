@@ -33,6 +33,11 @@ SubSense cannot cancel subscriptions for you. Costs and savings are estimates ba
 
 ## Keyword ideas
 
+Include these links at the end of the store description:
+
+Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://lanray07.github.io/SubSense-AI/privacy.html
+
 subscription,bills,renewal,tracker,recurring,savings,saas,membership,reminder,spending
 
 Validate the final keyword field and avoid unsupported integrations or competitor trademarks.

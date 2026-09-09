@@ -72,6 +72,24 @@ final class SubSenseUITests: XCTestCase {
         try session.refundTransaction(identifier: transaction.identifier)
         XCTAssertTrue(app.buttons["Discover SubSense Pro"].waitForExistence(timeout: 20))
     }
+    @MainActor func testFreeSubscriptionLimit() throws {
+        continueAfterFailure = false
+        let session = try storeSession(); defer { session.resetToDefaultState() }
+        let app = XCUIApplication(); app.launchArguments = ["--uitesting-reset", "-onboardingComplete", "YES"]; app.launch()
+        XCTAssertTrue(app.buttons["Subscriptions"].firstMatch.waitForExistence(timeout: 20)); app.buttons["Subscriptions"].firstMatch.tap()
+        for number in 1...6 {
+            app.buttons["Add subscription"].tap()
+            XCTAssertTrue(app.textFields["Subscription name"].waitForExistence(timeout: 5))
+            app.textFields["Subscription name"].tap(); app.textFields["Subscription name"].typeText("Membership \(number)")
+            app.textFields["Price per billing period"].tap(); app.textFields["Price per billing period"].typeText("5")
+            app.buttons["Save"].tap()
+            if number <= 5 { XCTAssertTrue(app.navigationBars["Subscriptions"].waitForExistence(timeout: 5)) }
+        }
+        XCTAssertTrue(app.alerts.staticTexts["Free supports five subscriptions. Upgrade to Pro to add more."].waitForExistence(timeout: 5))
+        capture("free-limit", app)
+        app.alerts.buttons["OK"].tap(); app.buttons["Cancel"].tap()
+        XCTAssertFalse(app.staticTexts["Membership 6"].exists)
+    }
     @MainActor func testReceiptReviewAndExport() {
         continueAfterFailure = false
         let app = XCUIApplication(); app.launchArguments = ["--demo"]; app.launch()

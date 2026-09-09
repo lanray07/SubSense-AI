@@ -15,7 +15,8 @@ struct RenewalCalendarView: View {
     private var visible: [Renewal] { if mode == "Month", let selection { return renewals.filter { calendar.isDate($0.date, inSameDayAs: selection) } }; return renewals }
     var body: some View {
         SheetShell(title: "Renewal Calendar") {
-            List {
+            ScrollView {
+              LazyVStack(alignment: .leading, spacing: 18) {
                 Picker("Calendar view", selection: $mode) { ForEach(["Month", "Timeline", "Upcoming"], id: \.self) { Text($0).tag($0) } }.pickerStyle(.segmented)
                 if mode != "Upcoming" {
                     HStack {
@@ -24,21 +25,22 @@ struct RenewalCalendarView: View {
                         Button { changeMonth(1) } label: { Image(systemName: "chevron.right") }.accessibilityLabel("Next month")
                     }.buttonStyle(.borderless)
                 }
-                if mode == "Month" { monthGrid }
-                Section(selection != nil && mode == "Month" ? "Selected day" : "Expected renewals") {
+                if mode == "Month" { Card { monthGrid } }
+                Text(selection != nil && mode == "Month" ? "Selected day" : "Expected renewals").font(.headline)
                     if visible.isEmpty { Text("No recorded charges in this period.").foregroundStyle(.secondary) }
                     ForEach(visible) { renewal in
                         NavigationLink { SubscriptionDetailView(id: renewal.subscription.id) } label: {
-                            VStack(alignment: .leading, spacing: 5) {
+                            Card { VStack(alignment: .leading, spacing: 5) {
                                 Text(renewal.date, format: .dateTime.weekday(.wide).month(.abbreviated).day()).font(.caption.weight(.medium)).foregroundStyle(.secondary)
                                 SubscriptionRow(subscription: renewal.subscription)
-                            }
+                            } }
                         }
+                        .buttonStyle(.plain)
                     }
                     if selection != nil { Button("Show the whole month") { selection = nil } }
-                }
-                Section { Text("Forecasts recur from your recorded dates. They are not a bank transaction history. Open SubSense periodically to refresh the next 60 reminders.").font(.caption).foregroundStyle(.secondary) }
-            }
+                Text("Forecasts recur from your recorded dates. They are not a bank transaction history. Open SubSense periodically to refresh the next 60 reminders.").font(.caption).foregroundStyle(.secondary)
+              }.padding(20).frame(maxWidth: 850).frame(maxWidth: .infinity)
+            }.background(Theme.canvas)
         }
     }
     private var monthGrid: some View {

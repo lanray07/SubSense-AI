@@ -33,7 +33,9 @@ jobs:
           set -o pipefail
           xcodebuild -project SubSense.xcodeproj -scheme SubSense \
             -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
-            -parallel-testing-enabled NO -resultBundlePath ReleaseTests \
+            -parallel-testing-enabled NO -test-timeouts-enabled YES \
+            -default-test-execution-time-allowance 240 -maximum-test-execution-time-allowance 300 \
+            -resultBundlePath ReleaseTests \
             ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test 2>&1 | tee tests.log
       - name: Collect screenshots and crash diagnostics
         if: always()

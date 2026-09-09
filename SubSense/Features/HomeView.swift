@@ -4,6 +4,7 @@ import SubSenseCore
 
 struct HomeView: View {
     @Environment(AppModel.self) private var model
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var currency = ""
     private var code: String { currency.isEmpty ? model.data.user.currency : currency }
     private var scoped: [Subscription] { model.active.filter { $0.currency == code } }
@@ -75,7 +76,7 @@ struct HomeView: View {
         }.padding(25).background(Theme.ink.gradient, in: RoundedRectangle(cornerRadius: 28))
     }
     private var kpis: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: typeSize.isAccessibilitySize ? 1 : 2), spacing: 12) {
             metric("Active subscriptions", value: "\(scoped.count)", symbol: "square.stack", footnote: "in \(code)")
             Button { model.sheet = .renewals } label: { metric("Upcoming charges", value: Money.format(model.engine.forecast(scoped, from: Date(), days: 7)[code] ?? 0, currency: code), symbol: "calendar", footnote: "next 7 days") }.buttonStyle(.plain)
             Button { model.requirePro(.simulator) } label: { metric("Potential savings", value: Money.format(model.engine.potentialSavings(scoped)[code] ?? 0, currency: code), symbol: "leaf", footnote: "per month · review first") }.buttonStyle(.plain)

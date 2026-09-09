@@ -71,14 +71,16 @@ struct ScoreRing: View {
 }
 struct SubscriptionRow: View {
     var subscription: Subscription
+    @Environment(\.dynamicTypeSize) private var typeSize
     var body: some View {
-        HStack(spacing: 12) {
+        let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))
+        layout {
             ProviderIcon(subscription: subscription)
             VStack(alignment: .leading, spacing: 4) {
                 Text(subscription.name).font(.headline)
                 Text("\(subscription.category) · \(subscription.usageFrequency.label)").font(.caption).foregroundStyle(.secondary)
             }
-            Spacer(minLength: 6)
+            if !typeSize.isAccessibilitySize { Spacer(minLength: 6) }
             VStack(alignment: .trailing, spacing: 4) {
                 Text(Money.format(subscription.price, currency: subscription.currency)).font(.subheadline.weight(.semibold)).monospacedDigit()
                 Text(subscription.status == .active ? subscription.billingFrequency.label : subscription.status.rawValue.capitalized).font(.caption).foregroundStyle(.secondary)
@@ -87,9 +89,10 @@ struct SubscriptionRow: View {
     }
 }
 struct PrimaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var enabled
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.font(.headline).frame(maxWidth: .infinity).padding(.vertical, 17)
-            .foregroundStyle(.white).background(Theme.action.opacity(configuration.isPressed ? 0.8 : 1), in: RoundedRectangle(cornerRadius: 18))
+            .foregroundStyle(.white).background(Theme.action.opacity(configuration.isPressed ? 0.8 : 1), in: RoundedRectangle(cornerRadius: 18)).opacity(enabled ? 1 : 0.5)
     }
 }
 struct SheetShell<Content: View>: View {
