@@ -40,6 +40,7 @@ struct PaywallView: View {
                     Text("Free includes five subscriptions, basic insights and renewal reminders. Choose a plan when you're ready for more.").font(.caption).foregroundStyle(.secondary)
                 }.padding(26).frame(maxWidth: 600).frame(maxWidth: .infinity)
             }.background(Theme.canvas).manageSubscriptionsSheet(isPresented: $manage)
+                .task { if store.products.isEmpty { await store.loadProducts() } }
                 .sheet(item: $legal) { page in
                     switch page {
                     case .privacy: PrivacyView()

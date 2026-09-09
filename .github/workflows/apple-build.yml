@@ -1,5 +1,13 @@
 name: Apple build and tests
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths-ignore: ['assets/**', 'docs/**', '**/*.md']
+  pull_request:
+    paths-ignore: ['assets/**', 'docs/**', '**/*.md']
+  workflow_dispatch:
+concurrency:
+  group: apple-build-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   validate:
     runs-on: macos-15

@@ -38,7 +38,7 @@ final class SubSenseUITests: XCTestCase {
         app.staticTexts["Persistent membership"].firstMatch.tap()
         app.buttons["Edit"].tap()
         let field = app.textFields["Subscription name"]
-        field.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+        XCTAssertTrue(field.waitForExistence(timeout: 5)); field.tap()
         // Replace through the hardware keyboard to exercise the real editor.
         field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: "Persistent membership".count))
         field.typeText("Edited membership")
@@ -49,7 +49,7 @@ final class SubSenseUITests: XCTestCase {
         app.buttons["Subscriptions"].firstMatch.tap()
         XCTAssertTrue(app.staticTexts["Edited membership"].firstMatch.waitForExistence(timeout: 5))
     }
-    @MainActor func testPurchaseRestoreAndExpiration() throws {
+    @MainActor func testPurchaseRestoreAndExpiration() async throws {
         continueAfterFailure = false
         let session = try storeSession(); defer { session.resetToDefaultState(); session.clearTransactions() }
         let app = XCUIApplication(); app.launchArguments = ["--demo"]; app.launch()
@@ -66,7 +66,7 @@ final class SubSenseUITests: XCTestCase {
         app.terminate(); app.launch()
         app.buttons["Settings"].firstMatch.tap()
         XCTAssertTrue(app.buttons["Discover SubSense Pro"].waitForExistence(timeout: 20))
-        try session.buyProduct(productIdentifier: "com.subsense.pro.annual")
+        _ = try await session.buyProduct(identifier: "com.subsense.pro.annual", options: [])
         XCTAssertTrue(app.buttons["Manage SubSense Pro"].waitForExistence(timeout: 20))
         let transaction = try XCTUnwrap(session.allTransactions().last(where: { $0.productIdentifier == "com.subsense.pro.annual" }))
         try session.refundTransaction(identifier: transaction.identifier)

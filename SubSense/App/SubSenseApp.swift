@@ -34,6 +34,8 @@ struct SubSenseApp: App {
             let appModel = try AppModel(repository: repository)
             if preview { appModel.startDemo() }
             model = appModel; startupError = nil
+            // StoreKit must outlive the loading view's cancellable SwiftUI task.
+            Task { await appModel.store.start() }
         } catch { startupError = "Local storage is unavailable. Your existing data has not been replaced. \(error.localizedDescription)" }
     }
 }
@@ -97,7 +99,7 @@ struct RootView: View {
         }
         .alert("Something needs attention", isPresented: Binding(get: { model.error != nil }, set: { if !$0 { model.error = nil } })) { Button("OK") { model.error = nil } } message: { Text(model.error ?? "") }
         .alert("More room for what matters", isPresented: Binding(get: { model.celebration != nil }, set: { if !$0 { model.celebration = nil } })) { Button("Lovely") { model.celebration = nil } } message: { Text(model.celebration ?? "") }
-        .task { await model.store.start(); if appLock { await unlock() }; model.refreshReminders() }
+        .task { if appLock { await unlock() }; model.refreshReminders() }
         .onChange(of: scenePhase) { _, phase in
             if phase == .background { unlocked = false; if appLock { model.sheet = nil } }
             if phase == .active { model.refreshReminders(); Task { await model.store.refreshEntitlements() } }

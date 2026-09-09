@@ -41,7 +41,7 @@ storekit = {
     "subscriptionGroups": [{"id": "21110101", "localizations": [{"description": "Premium subscription clarity", "displayName": "SubSense Pro", "locale": "en_GB"}], "name": "SubSense Pro", "subscriptions": []}],
     "version": {"major": 3, "minor": 0}
 }
-for name, price, period, pid, internal in [("Pro Monthly", "4.99", "P1M", "com.subsense.pro.monthly", "21110102"), ("Pro Annual", "34.99", "P1Y", "com.subsense.pro.annual", "21110103")]:
+for name, price, period, pid, internal in [("Pro Monthly", "1.49", "P1M", "com.subsense.pro.monthly", "21110102"), ("Pro Annual", "9.99", "P1Y", "com.subsense.pro.annual", "21110103")]:
     storekit["subscriptionGroups"][0]["subscriptions"].append({
         "adHocOffers": [], "codeOffers": [], "displayPrice": price, "familyShareable": False, "groupNumber": 1,
         "internalID": internal, "introductoryOffer": None,
