@@ -1,0 +1,55 @@
+name: Release validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: macos-15
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [iPhone-16-Pro, iPad-Pro-13-inch-M4-8GB]
+        os: ['18', '26']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 26
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app/Contents/Developer
+      - name: Core tests
+        run: swift test
+      - name: Create simulator
+        env:
+          OS_MAJOR: ${{ matrix.os }}
+          DEVICE_TYPE: ${{ matrix.device }}
+        run: |
+          RUNTIME=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys,os; print(next(r["identifier"] for r in json.load(sys.stdin)["runtimes"] if r["isAvailable"] and r["name"].startswith("iOS " + os.environ["OS_MAJOR"] + ".")))')
+          DEVICE=$(xcrun simctl create 'SubSense Release Validation' "com.apple.CoreSimulator.SimDeviceType.$DEVICE_TYPE" "$RUNTIME")
+          echo "SIMULATOR_ID=$DEVICE" >> "$GITHUB_ENV"
+          xcrun simctl boot "$DEVICE"
+          xcrun simctl bootstatus "$DEVICE" -b
+      - name: Native UI tests
+        run: |
+          set -o pipefail
+          xcodebuild -project SubSense.xcodeproj -scheme SubSense \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+            -parallel-testing-enabled NO -resultBundlePath ReleaseTests \
+            ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test 2>&1 | tee tests.log
+      - name: Collect screenshots and crash diagnostics
+        if: always()
+        run: |
+          mkdir -p diagnostics/screenshots diagnostics/crashes
+          xcrun xcresulttool export attachments --path ReleaseTests.xcresult --output-path diagnostics/screenshots || true
+          find "$HOME/Library/Logs/DiagnosticReports" -name '*SubSense*' -type f -exec cp {} diagnostics/crashes/ \; || true
+          if [ -n "$SIMULATOR_ID" ]; then
+            xcrun simctl spawn "$SIMULATOR_ID" log show --last 20m --style compact --predicate 'process == "SubSense"' > diagnostics/app.log 2>&1 || true
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: release-validation-${{ matrix.device }}-ios${{ matrix.os }}
+          path: |
+            tests.log
+            diagnostics
+            ReleaseTests.xcresult
+          retention-days: 7

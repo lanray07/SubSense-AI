@@ -135,7 +135,6 @@ struct SubscriptionEditor: View {
                     TextField("Payment method nickname", text: $subscription.paymentNickname)
                     TextField("Notes", text: $subscription.notes, axis: .vertical).lineLimit(3...6)
                 }
-                if let error { Section { Text(error).foregroundStyle(.red) } }
             }.navigationTitle(model.subscriptions.contains(where: { $0.id == subscription.id }) ? "Edit subscription" : "Add subscription").navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
@@ -144,6 +143,9 @@ struct SubscriptionEditor: View {
                 .onAppear { if priceText.isEmpty { priceText = subscription.price == 0 ? "" : Money.input(subscription.price) }; hasRenewal = subscription.nextBillingDate != nil }
                 .onChange(of: subscription.status) { _, value in if value == .trial && subscription.trialEndDate == nil { subscription.trialEndDate = Date() } }
                 .onChange(of: hasRenewal) { _, value in if value && subscription.nextBillingDate == nil { subscription.nextBillingDate = Date() } }
+                .alert("Check subscription details", isPresented: Binding(get: { error != nil }, set: { if !$0 { error = nil } })) {
+                    Button("OK") { error = nil }
+                } message: { Text(error ?? "") }
         }
     }
     private func save() {
