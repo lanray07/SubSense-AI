@@ -1,16 +1,18 @@
 name: App Store screenshot capture
 on:
   workflow_dispatch:
+    inputs:
+      device:
+        description: Device collection
+        type: choice
+        default: both
+        options: [both, iphone, ipad]
 jobs:
   capture:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - device: iPhone-14-Plus
-            label: iphone
-          - device: iPad-Pro-13-inch-M4-8GB
-            label: ipad
+        include: ${{ fromJSON(inputs.device == 'ipad' && '[{"device":"iPad-Pro-13-inch-M4-8GB","label":"ipad"}]' || inputs.device == 'iphone' && '[{"device":"iPhone-14-Plus","label":"iphone"}]' || '[{"device":"iPhone-14-Plus","label":"iphone"},{"device":"iPad-Pro-13-inch-M4-8GB","label":"ipad"}]') }}
     runs-on: macos-15
     timeout-minutes: 30
     steps:

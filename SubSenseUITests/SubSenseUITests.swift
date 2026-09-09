@@ -20,6 +20,23 @@ final class SubSenseUITests: XCTestCase {
         app.buttons["Where can I save money?"].tap()
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Start by reviewing'")).firstMatch.waitForExistence(timeout: 10))
         capture("store-04-copilot", app)
+        if app.frame.width > 700 {
+            app.buttons["Subscriptions"].firstMatch.tap()
+            app.staticTexts["ChatGPT Plus"].firstMatch.tap()
+            XCTAssertTrue(app.staticTexts["Value Score"].firstMatch.waitForExistence(timeout: 5))
+            capture("store-05-detail", app)
+            app.buttons["Settings"].firstMatch.tap()
+            XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 5))
+            capture("store-06-settings", app)
+            app.buttons["Profile & savings goal"].firstMatch.tap()
+            XCTAssertTrue(app.navigationBars["Profile & goals"].waitForExistence(timeout: 5))
+            capture("store-07-goals", app)
+            app.navigationBars.buttons["Settings"].firstMatch.tap()
+            app.buttons["Renewal reminders"].firstMatch.tap()
+            XCTAssertTrue(app.navigationBars["Renewal reminders"].waitForExistence(timeout: 5))
+            capture("store-08-reminders", app)
+            return
+        }
         app.buttons["Home"].firstMatch.tap()
         for (label, title, name) in [
             ("Upcoming charges", "Renewal Calendar", "store-05-renewals"),
