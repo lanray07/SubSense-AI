@@ -3,6 +3,14 @@ on:
   workflow_dispatch:
 jobs:
   capture:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - device: iPhone-14-Plus
+            label: iphone
+          - device: iPad-Pro-13-inch-M4-8GB
+            label: ipad
     runs-on: macos-15
     timeout-minutes: 30
     steps:
@@ -10,20 +18,20 @@ jobs:
       - name: Create screenshot simulator
         run: |
           RUNTIME=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; print(next(r["identifier"] for r in json.load(sys.stdin)["runtimes"] if r["isAvailable"] and "iOS" in r["name"]))')
-          DEVICE=$(xcrun simctl create "SubSense Store Capture" com.apple.CoreSimulator.SimDeviceType.iPhone-14-Plus "$RUNTIME")
+          DEVICE=$(xcrun simctl create "SubSense Store Capture" "com.apple.CoreSimulator.SimDeviceType.${{ matrix.device }}" "$RUNTIME")
           echo "CAPTURE_DEVICE=$DEVICE" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEVICE"
           xcrun simctl bootstatus "$DEVICE" -b
           xcrun simctl status_bar "$DEVICE" override --time '9:41' --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
           xcrun simctl ui "$DEVICE" appearance light
       - name: Capture real app screens
-        run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$CAPTURE_DEVICE" -resultBundlePath StoreScreenshots -only-testing:SubSenseUITests/SubSenseUITests/testAppStoreScreenshotSet ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test
+        run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$CAPTURE_DEVICE" -resultBundlePath StoreScreenshots -only-testing:SubSenseUITests/SubSenseUITests/testExpandedStoreScreenshotSet ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test
       - name: Export screenshot attachments
         if: always()
         run: xcrun xcresulttool export attachments --path StoreScreenshots.xcresult --output-path screenshots
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: app-store-screenshots
+          name: app-store-screenshots-${{ matrix.label }}
           path: screenshots
           if-no-files-found: warn

@@ -2,6 +2,42 @@ import XCTest
 import StoreKitTest
 
 final class SubSenseUITests: XCTestCase {
+    @MainActor func testExpandedStoreScreenshotSet() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["--demo"]
+        app.launch()
+        XCTAssertTrue(app.buttons["Home"].firstMatch.waitForExistence(timeout: 20))
+        capture("store-01-home", app)
+        app.buttons["Subscriptions"].firstMatch.tap()
+        XCTAssertTrue(app.navigationBars["Subscriptions"].waitForExistence(timeout: 5))
+        capture("store-02-subscriptions", app)
+        app.buttons["Insights"].firstMatch.tap()
+        XCTAssertTrue(app.navigationBars["Insights"].waitForExistence(timeout: 5))
+        capture("store-03-insights", app)
+        app.buttons["Copilot"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Where can I save money?"].waitForExistence(timeout: 5))
+        app.buttons["Where can I save money?"].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Start by reviewing'")).firstMatch.waitForExistence(timeout: 10))
+        capture("store-04-copilot", app)
+        app.buttons["Home"].firstMatch.tap()
+        for (label, title, name) in [
+            ("Upcoming charges", "Renewal Calendar", "store-05-renewals"),
+            ("Potential savings", "Savings Simulator", "store-06-simulator"),
+            ("Subscription health", "Subscription Health Score", "store-07-health")
+        ] {
+            let button = app.buttons.containing(NSPredicate(format: "label CONTAINS %@", label)).firstMatch
+            XCTAssertTrue(button.waitForExistence(timeout: 5))
+            button.tap()
+            XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+            capture(name, app)
+            app.buttons["Done"].firstMatch.tap()
+        }
+        app.buttons["Settings"].firstMatch.tap()
+        app.buttons["How your data is handled"].tap()
+        XCTAssertTrue(app.navigationBars["Your data stays yours"].waitForExistence(timeout: 5))
+        capture("store-08-privacy", app)
+    }
     @MainActor func testAppStoreScreenshotSet() throws {
         continueAfterFailure = false
         let configurationURL = URL(fileURLWithPath: #filePath)
