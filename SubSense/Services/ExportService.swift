@@ -68,7 +68,7 @@ enum ExportService {
                     chunks.append(String(remaining[..<end])); remaining = remaining[end...]
                 }
                 for chunk in chunks {
-                    let rect = (chunk as NSString).boundingRect(with: CGSize(width: 511, height: .greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attributes, context: nil)
+                    let rect = (chunk as NSString).boundingRect(with: CGSize(width: 511, height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attributes, context: nil)
                     if y + rect.height > 775 { newPage() }
                     (chunk as NSString).draw(in: CGRect(x: 42, y: y, width: 511, height: rect.height + 3), withAttributes: attributes)
                     y += rect.height + 14

@@ -1,6 +1,31 @@
 import XCTest
 
 final class SubSenseUITests: XCTestCase {
+    @MainActor func testAppStoreScreenshotSet() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["--demo"]
+        app.launch()
+        XCTAssertTrue(app.tabBars.buttons["Home"].waitForExistence(timeout: 20))
+        capture("store-01-home", app)
+        app.tabBars.buttons["Subscriptions"].tap()
+        XCTAssertTrue(app.navigationBars["Subscriptions"].waitForExistence(timeout: 5))
+        capture("store-02-subscriptions", app)
+        app.tabBars.buttons["Insights"].tap()
+        XCTAssertTrue(app.navigationBars["Insights"].waitForExistence(timeout: 5))
+        capture("store-03-insights", app)
+        app.tabBars.buttons["Copilot"].tap()
+        XCTAssertTrue(app.buttons["Where can I save money?"].waitForExistence(timeout: 5))
+        app.buttons["Where can I save money?"].tap()
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Start by reviewing'")).firstMatch.waitForExistence(timeout: 10))
+        capture("store-04-copilot", app)
+        app.tabBars.buttons["Settings"].tap()
+        app.buttons["Discover SubSense Pro"].tap()
+        XCTAssertTrue(app.navigationBars["SubSense Pro"].waitForExistence(timeout: 5))
+        capture("review-pro-features", app)
+        app.swipeUp()
+        capture("review-pro-purchase", app)
+    }
     @MainActor func testDemoNavigationAndScreenshots() {
         let app = XCUIApplication()
         app.launchArguments = ["--demo"]
