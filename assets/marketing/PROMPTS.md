@@ -1,0 +1,16 @@
+# SubSense AI asset prompts
+
+Generated with the built-in Codex imagegen tool on 9 September 2026. No app UI is depicted. These are promotional illustrations, not App Store screenshot evidence.
+
+## pro
+
+Use case: ads-marketing. Create one premium square 1024x1024 promotional artwork for SubSense AI Pro, a private subscription tracker. No text whatsoever. Full bleed opaque deep forest green #192e26 backdrop. Central beautifully sculpted continuous circular renewal arrow in satin pale mint #cde8ae, a single elegant four-point ivory sparkle suspended in its open centre. Three very subtle layered ivory subscription cards nested behind the lower arc, blank surfaces with discreet embossed horizontal lines, no readable UI. Warm champagne rim light, studio product photography meets refined 3D editorial illustration, tactile ceramic and brushed satin, believable soft shadows, confident minimal composition, large distinct silhouette legible as a small store tile, pristine edges. Entire symbol within central 72% safe area. Restrained sophistication, no neon, no coins, no money symbols, no devices, no Apple logos, no third-party brands, no fake screens, no watermarks. Deliver a single finished square image, not a moodboard.
+
+## hero
+
+Use case: ads-marketing. Create one premium wide landscape 1536x1024 brand hero artwork for SubSense AI, a private subscription manager. Full bleed deep forest green #192e26 studio background. On right half a sculptural still life of three elegant ivory rounded rectangular subscription cards, blank embossed lines only, loosely stacked and gently floating through one large satin mint #cde8ae circular renewal ribbon with an arrow tip. One small four-point ivory sparkle. Small warm champagne accents. Left 45 percent calm deep forest negative space for website headline overlay; no text anywhere. Art direction: sophisticated editorial product photography, tactile porcelain, satin metal, soft realistic shadows and warm light, disciplined geometry, contemporary premium finance brand, elegant rather than futuristic. Generous breathing room, no currency, no bank logos, no charts with invented values, no phone frames, no app UI, no plastic rainbow gradients, no watermark. Single finished image.
+
+## poster
+
+Use case: ads-marketing. Create one premium portrait campaign poster 1024x1536 for SubSense AI subscription manager. Deep forest #192e26 and ivory #f7f8ef, pale mint #cde8ae and discreet champagne. Top small wordmark EXACT 'SubSense AI'. Large impeccably typeset modern sans serif headline EXACT 'Make room for\nwhat matters.' on two balanced lines, ivory, upper third, ample margins. Central-lower area refined 3D editorial sculpture: a single large mint renewal arrow loop encircling a four-point ivory sparkle, three ivory subscription cards with only subtle embossed rules, no readable UI, no numbers. Soft directional studio light, tactile ceramic satin materials, beautiful grounded shadows, minimal luxurious composition. Bottom small text EXACT 'Subscriptions & Savings'. No additional copy, no prices, no guaranteed savings claim, no App Store badge, no device or fake screenshot, no third-party logo, no watermark. This is promotional artwork, not an app screenshot. One finished poster, not collage.
+
