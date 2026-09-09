@@ -1,0 +1,76 @@
+{
+  "identifier": "867420D0-351C-477D-A68B-F2D6BDB923FE",
+  "nonRenewingSubscriptions": [],
+  "products": [],
+  "settings": {
+    "_applicationInternalID": "",
+    "_developerTeamID": "",
+    "_failTransactionsEnabled": false,
+    "_locale": "en_GB",
+    "_storefront": "GBR",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "21110101",
+      "localizations": [
+        {
+          "description": "Premium subscription clarity",
+          "displayName": "SubSense Pro",
+          "locale": "en_GB"
+        }
+      ],
+      "name": "SubSense Pro",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "4.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "21110102",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Unlimited subscriptions and savings insights",
+              "displayName": "Pro Monthly",
+              "locale": "en_GB"
+            }
+          ],
+          "productID": "com.subsense.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Pro Monthly",
+          "subscriptionGroupID": "21110101",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "34.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "21110103",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Unlimited subscriptions and savings insights",
+              "displayName": "Pro Annual",
+              "locale": "en_GB"
+            }
+          ],
+          "productID": "com.subsense.pro.annual",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Pro Annual",
+          "subscriptionGroupID": "21110101",
+          "type": "RecurringSubscription",
+          "winBackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

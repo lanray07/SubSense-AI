@@ -1,0 +1,1596 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "/ month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "/ month"
+          }
+        }
+      }
+    },
+    "7 days before next renewal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 days before next renewal"
+          }
+        }
+      }
+    },
+    "90–100 · Excellent\n75–89 · Healthy\n60–74 · Needs attention\n40–59 · High waste\n0–39 · Critical": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90–100 · Excellent\n75–89 · Healthy\n60–74 · Needs attention\n40–59 · High waste\n0–39 · Critical"
+          }
+        }
+      }
+    },
+    "A clearer way forward.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A clearer way forward."
+          }
+        }
+      }
+    },
+    "A little more breathing room.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little more breathing room."
+          }
+        }
+      }
+    },
+    "Add My First Subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add My First Subscription"
+          }
+        }
+      }
+    },
+    "Add a subscription to see your spending mix.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add a subscription to see your spending mix."
+          }
+        }
+      }
+    },
+    "Add profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add profile"
+          }
+        }
+      }
+    },
+    "Add subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add subscription"
+          }
+        }
+      }
+    },
+    "An illustrative recurring-spend example": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An illustrative recurring-spend example"
+          }
+        }
+      }
+    },
+    "An optimisation suggestion, not an automatic decision or financial advice.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An optimisation suggestion, not an automatic decision or financial advice."
+          }
+        }
+      }
+    },
+    "Apple processes SubSense Pro purchases and receives the information necessary for StoreKit. SubSense does not retrieve subscriptions purchased from other apps. There is no advertising SDK, analytics SDK or external AI upload in this build.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple processes SubSense Pro purchases and receives the information necessary for StoreKit. SubSense does not retrieve subscriptions purchased from other apps. There is no advertising SDK, analytics SDK or external AI upload in this build."
+          }
+        }
+      }
+    },
+    "Ask about the commitments you keep, and the ones you could leave behind.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask about the commitments you keep, and the ones you could leave behind."
+          }
+        }
+      }
+    },
+    "Assumes immediate cancellation, unchanged prices, no fees and no replacement purchases. Annual payments may already be non-refundable. Savings begin when charges actually stop.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assumes immediate cancellation, unchanged prices, no fees and no replacement purchases. Annual payments may already be non-refundable. Savings begin when charges actually stop."
+          }
+        }
+      }
+    },
+    "Based on your entries. Trials use their entered post-trial price. Variable prices are estimates. Currencies are never combined.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based on your entries. Trials use their entered post-trial price. Variable prices are estimates. Currencies are never combined."
+          }
+        }
+      }
+    },
+    "Build a cancellation plan": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build a cancellation plan"
+          }
+        }
+      }
+    },
+    "CSV and PDF contain the selected report. JSON includes your complete portable portfolio archive. Shared files contain personal financial information.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CSV and PDF contain the selected report. JSON includes your complete portable portfolio archive. Shared files contain personal financial information."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Cancellation Assistant": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancellation Assistant"
+          }
+        }
+      }
+    },
+    "Cancelled": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelled"
+          }
+        }
+      }
+    },
+    "Check before saving": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check before saving"
+          }
+        }
+      }
+    },
+    "Choose subscriptions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose subscriptions"
+          }
+        }
+      }
+    },
+    "Clarity is the first step to saving.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clarity is the first step to saving."
+          }
+        }
+      }
+    },
+    "Clarity, on your terms.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clarity, on your terms."
+          }
+        }
+      }
+    },
+    "Clear": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
+          }
+        }
+      }
+    },
+    "Confirm cancellation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm cancellation"
+          }
+        }
+      }
+    },
+    "Copilot": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copilot"
+          }
+        }
+      }
+    },
+    "Costs are sorted within each currency. High Cost means over 1.5× your average monthly cost in that currency.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Costs are sorted within each currency. High Cost means over 1.5× your average monthly cost in that currency."
+          }
+        }
+      }
+    },
+    "DEMO · Illustrative prices": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DEMO · Illustrative prices"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "Delete All Data": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete All Data"
+          }
+        }
+      }
+    },
+    "Delete all data permanently": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete all data permanently"
+          }
+        }
+      }
+    },
+    "Delete record": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete record"
+          }
+        }
+      }
+    },
+    "Deletes the saved portfolio, history, plans, goals and pending reminders on this device. Exported copies outside the app and Apple purchase records remain under your control.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deletes the saved portfolio, history, plans, goals and pending reminders on this device. Exported copies outside the app and Apple purchase records remain under your control."
+          }
+        }
+      }
+    },
+    "Demo data is temporary and separate from your saved portfolio. Prices are illustrative; no demo alerts are scheduled.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo data is temporary and separate from your saved portfolio. Prices are illustrative; no demo alerts are scheduled."
+          }
+        }
+      }
+    },
+    "Depending on your device settings, iOS backups may include the local app store. Manage those backups through Apple. Disabling or deleting this app does not cancel any subscription.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depending on your device settings, iOS backups may include the local app store. Manage those backups through Apple. Disabling or deleting this app does not cancel any subscription."
+          }
+        }
+      }
+    },
+    "Device backups": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device backups"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "Edit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "Edit subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit subscription"
+          }
+        }
+      }
+    },
+    "Enable the device authentication lock and private notification content in Settings. Export a copy or use Delete All Data to remove the portfolio and reminders. Exported files you share and device backups are managed separately by you. Export is also available before deletion without Pro.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable the device authentication lock and private notification content in Settings. Export a copy or use Delete All Data to remove the portfolio and reminders. Exported files you share and device backups are managed separately by you. Export is also available before deletion without Pro."
+          }
+        }
+      }
+    },
+    "Exit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exit"
+          }
+        }
+      }
+    },
+    "Explore": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explore"
+          }
+        }
+      }
+    },
+    "Explore Pro": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explore Pro"
+          }
+        }
+      }
+    },
+    "Explore advanced insights with Pro": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explore advanced insights with Pro"
+          }
+        }
+      }
+    },
+    "Explore the demo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explore the demo"
+          }
+        }
+      }
+    },
+    "Export before deleting": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export before deleting"
+          }
+        }
+      }
+    },
+    "Export reports": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export reports"
+          }
+        }
+      }
+    },
+    "Extract subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extract subscription"
+          }
+        }
+      }
+    },
+    "Find alternatives": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find alternatives"
+          }
+        }
+      }
+    },
+    "Find out where your money goes every month.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find out where your money goes every month."
+          }
+        }
+      }
+    },
+    "Finding just one unused subscription could pay for SubSense Pro.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finding just one unused subscription could pay for SubSense Pro."
+          }
+        }
+      }
+    },
+    "For trials, enter the post-trial price. Missing dates are excluded from forecasts. To record a cancellation and savings, use the Cancellation Assistant.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For trials, enter the post-trial price. Missing dates are excluded from forecasts. To record a cancellation and savings, use the Cancellation Assistant."
+          }
+        }
+      }
+    },
+    "Forecasts recur from your recorded dates. They are not a bank transaction history. Open SubSense periodically to refresh the next 60 reminders.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forecasts recur from your recorded dates. They are not a bank transaction history. Open SubSense periodically to refresh the next 60 reminders."
+          }
+        }
+      }
+    },
+    "Free includes five subscriptions, basic insights and renewal reminders. No introductory trial is configured in this build.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free includes five subscriptions, basic insights and renewal reminders. No introductory trial is configured in this build."
+          }
+        }
+      }
+    },
+    "Home": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home"
+          }
+        }
+      }
+    },
+    "Household profiles are local labels, not shared accounts. No cross-device sync is enabled. Cost per licence assumes the entered price covers all licences.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household profiles are local labels, not shared accounts. No cross-device sync is enabled. Cost per licence assumes the entered price covers all licences."
+          }
+        }
+      }
+    },
+    "Household profiles · local only": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household profiles · local only"
+          }
+        }
+      }
+    },
+    "Household, business & AI Stack": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Household, business & AI Stack"
+          }
+        }
+      }
+    },
+    "How it fits your life": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How it fits your life"
+          }
+        }
+      }
+    },
+    "How it's calculated": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How it's calculated"
+          }
+        }
+      }
+    },
+    "How your data is handled": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How your data is handled"
+          }
+        }
+      }
+    },
+    "I've cancelled with the provider": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I've cancelled with the provider"
+          }
+        }
+      }
+    },
+    "Import Subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Subscription"
+          }
+        }
+      }
+    },
+    "Import a receipt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import a receipt"
+          }
+        }
+      }
+    },
+    "Import text file": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import text file"
+          }
+        }
+      }
+    },
+    "Income is stored locally and only affects the score for matching-currency spending. No foreign exchange conversion is performed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Income is stored locally and only affects the score for matching-currency spending. No foreign exchange conversion is performed."
+          }
+        }
+      }
+    },
+    "Insights": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insights"
+          }
+        }
+      }
+    },
+    "Keep": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep"
+          }
+        }
+      }
+    },
+    "Keep this subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep this subscription"
+          }
+        }
+      }
+    },
+    "Local Copilot · No data leaves this device": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Copilot · No data leaves this device"
+          }
+        }
+      }
+    },
+    "Local analysis · Transparent rules\nUses only the costs, dates and usage you entered.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local analysis · Transparent rules\nUses only the costs, dates and usage you entered."
+          }
+        }
+      }
+    },
+    "Lovely": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lovely"
+          }
+        }
+      }
+    },
+    "MONTHLY SUBSCRIPTION SPEND": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MONTHLY SUBSCRIPTION SPEND"
+          }
+        }
+      }
+    },
+    "Make it yours": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make it yours"
+          }
+        }
+      }
+    },
+    "Make room for more.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make room for more."
+          }
+        }
+      }
+    },
+    "Manage subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage subscription"
+          }
+        }
+      }
+    },
+    "Mark as essential": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark as essential"
+          }
+        }
+      }
+    },
+    "Meet your subscription copilot": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meet your subscription copilot"
+          }
+        }
+      }
+    },
+    "Monthly spend · currencies kept separate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly spend · currencies kept separate"
+          }
+        }
+      }
+    },
+    "Next month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next month"
+          }
+        }
+      }
+    },
+    "No current external pricing is connected. Verify features, eligibility and migration costs yourself; a negative difference means higher spending.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No current external pricing is connected. Verify features, eligibility and migration costs yourself; a negative difference means higher spending."
+          }
+        }
+      }
+    },
+    "No low-use, non-essential commitments recorded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No low-use, non-essential commitments recorded."
+          }
+        }
+      }
+    },
+    "No overlaps found in these entries.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No overlaps found in these entries."
+          }
+        }
+      }
+    },
+    "No recorded charges in this period.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recorded charges in this period."
+          }
+        }
+      }
+    },
+    "No recorded renewals in the next 30 days.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recorded renewals in the next 30 days."
+          }
+        }
+      }
+    },
+    "Nothing urgent. Your subscriptions look settled.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing urgent. Your subscriptions look settled."
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Offline rules provider, not a generative AI model. Usage is self-reported; savings are estimates. Conversations are kept only while this screen is open.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline rules provider, not a generative AI model. Usage is self-reported; savings are estimates. Conversations are kept only while this screen is open."
+          }
+        }
+      }
+    },
+    "Only record a downgrade after changing the plan with your provider. Keep the same currency and billing interval.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only record a downgrade after changing the plan with your provider. Keep the same currency and billing interval."
+          }
+        }
+      }
+    },
+    "Open renewal calendar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open renewal calendar"
+          }
+        }
+      }
+    },
+    "Paste a receipt, choose a UTF-8 text file, or select a screenshot. Text recognition and parsing happen on your device. Nothing is saved until you review and confirm.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste a receipt, choose a UTF-8 text file, or select a screenshot. Text recognition and parsing happen on your device. Nothing is saved until you review and confirm."
+          }
+        }
+      }
+    },
+    "Possible overlap": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Possible overlap"
+          }
+        }
+      }
+    },
+    "Prepare export": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare export"
+          }
+        }
+      }
+    },
+    "Preview a sample dashboard": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview a sample dashboard"
+          }
+        }
+      }
+    },
+    "Previous month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous month"
+          }
+        }
+      }
+    },
+    "Privacy & security": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy & security"
+          }
+        }
+      }
+    },
+    "Privacy Policy": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy Policy"
+          }
+        }
+      }
+    },
+    "Private by design": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Private by design"
+          }
+        }
+      }
+    },
+    "Processing": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Processing"
+          }
+        }
+      }
+    },
+    "Profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile"
+          }
+        }
+      }
+    },
+    "Profile & goals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile & goals"
+          }
+        }
+      }
+    },
+    "Receipt text": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receipt text"
+          }
+        }
+      }
+    },
+    "Record confirmed downgrade": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record confirmed downgrade"
+          }
+        }
+      }
+    },
+    "Record downgrade": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record downgrade"
+          }
+        }
+      }
+    },
+    "Remind me to review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remind me to review"
+          }
+        }
+      }
+    },
+    "Reminders use your entered renewal and trial dates. SubSense schedules the nearest 60 events, including cancellation plans, and refreshes them when you open the app. It cannot detect provider price changes automatically.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders use your entered renewal and trial dates. SubSense schedules the nearest 60 events, including cancellation plans, and refreshes them when you open the app. It cannot detect provider price changes automatically."
+          }
+        }
+      }
+    },
+    "Renewal reminders": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renewal reminders"
+          }
+        }
+      }
+    },
+    "Restore Purchases": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore Purchases"
+          }
+        }
+      }
+    },
+    "Retry loading plans": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry loading plans"
+          }
+        }
+      }
+    },
+    "Review & edit extracted details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review & edit extracted details"
+          }
+        }
+      }
+    },
+    "Run your subscription audit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run your subscription audit"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "Save plan & reminder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save plan & reminder"
+          }
+        }
+      }
+    },
+    "Save preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save preferences"
+          }
+        }
+      }
+    },
+    "Save reminder preferences": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save reminder preferences"
+          }
+        }
+      }
+    },
+    "Savings count each rarely or never used, non-essential subscription once. Category overlaps and possible duplicates don't add unverified savings.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savings count each rarely or never used, non-essential subscription once. Category overlaps and possible duplicates don't add unverified savings."
+          }
+        }
+      }
+    },
+    "Score bands": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score bands"
+          }
+        }
+      }
+    },
+    "Scoring, receipt parsing, screenshot text recognition, audits and Copilot responses run locally. The current Copilot is a deterministic rules provider. There is no generative AI connection, cloud sync, bank connection or email inbox access.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scoring, receipt parsing, screenshot text recognition, audits and Copilot responses run locally. The current Copilot is a deterministic rules provider. There is no generative AI connection, cloud sync, bank connection or email inbox access."
+          }
+        }
+      }
+    },
+    "Select commitments to explore a future with fewer bills. Nothing is cancelled.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select commitments to explore a future with fewer bills. Nothing is cancelled."
+          }
+        }
+      }
+    },
+    "Send question": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send question"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Share or save report": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share or save report"
+          }
+        }
+      }
+    },
+    "Show the whole month": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the whole month"
+          }
+        }
+      }
+    },
+    "Sort subscriptions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort subscriptions"
+          }
+        }
+      }
+    },
+    "Start with one subscription. Your insights grow from there.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start with one subscription. Your insights grow from there."
+          }
+        }
+      }
+    },
+    "SubSense AI · Version 1.0\nKnow what you're paying for. Keep more of your money.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SubSense AI · Version 1.0\nKnow what you're paying for. Keep more of your money."
+          }
+        }
+      }
+    },
+    "SubSense Copilot": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SubSense Copilot"
+          }
+        }
+      }
+    },
+    "SubSense Pro renews automatically unless cancelled through your Apple Account. Deleting local data does not cancel Pro. Apple handles payment, refunds and subscription management.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SubSense Pro renews automatically unless cancelled through your Apple Account. Deleting local data does not cancel Pro. Apple handles payment, refunds and subscription management."
+          }
+        }
+      }
+    },
+    "SubSense cannot cancel this service for you. Complete cancellation with the provider before marking it cancelled here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SubSense cannot cancel this service for you. Complete cancellation with the provider before marking it cancelled here."
+          }
+        }
+      }
+    },
+    "SubSense provides subscription records and estimates from information you enter. You are responsible for confirming billing dates, prices, provider terms and cancellations. The app does not execute third-party cancellations or provide financial advice.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SubSense provides subscription records and estimates from information you enter. You are responsible for confirming billing dates, prices, provider terms and cancellations. The app does not execute third-party cancellations or provide financial advice."
+          }
+        }
+      }
+    },
+    "SubSense stores the subscriptions, costs, usage ratings, notes, profiles and savings actions you enter in a local SwiftData store, protected by iOS Data Protection.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SubSense stores the subscriptions, costs, usage ratings, notes, profiles and savings actions you enter in a local SwiftData store, protected by iOS Data Protection."
+          }
+        }
+      }
+    },
+    "Subscription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscription"
+          }
+        }
+      }
+    },
+    "Subscriptions": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscriptions"
+          }
+        }
+      }
+    },
+    "Terms": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms"
+          }
+        }
+      }
+    },
+    "The essentials": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The essentials"
+          }
+        }
+      }
+    },
+    "The portfolio stays on this device and is protected by iOS Data Protection. Your device backup settings may include app data.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The portfolio stays on this device and is protected by iOS Data Protection. Your device backup settings may include app data."
+          }
+        }
+      }
+    },
+    "These are annualised reductions at the time of each action, not cash received or measured lifetime savings. Future price changes or resubscriptions can alter the result.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are annualised reductions at the time of each action, not cash received or measured lifetime savings. Future price changes or resubscriptions can alter the result."
+          }
+        }
+      }
+    },
+    "Third parties": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Third parties"
+          }
+        }
+      }
+    },
+    "This cannot be undone. It does not cancel any provider subscriptions or your SubSense Pro plan. Export is available here even without Pro.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cannot be undone. It does not cancel any provider subscriptions or your SubSense Pro plan. Export is available here even without Pro."
+          }
+        }
+      }
+    },
+    "This updates your local record and projected savings. It does not contact the provider or refund past payments.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This updates your local record and projected savings. It does not contact the provider or refund past payments."
+          }
+        }
+      }
+    },
+    "Timing": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timing"
+          }
+        }
+      }
+    },
+    "Try a savings scenario": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try a savings scenario"
+          }
+        }
+      }
+    },
+    "Try again": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try again"
+          }
+        }
+      }
+    },
+    "Turn your portfolio into a practical savings conversation with SubSense Pro.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn your portfolio into a practical savings conversation with SubSense Pro."
+          }
+        }
+      }
+    },
+    "Unlock SubSense": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock SubSense"
+          }
+        }
+      }
+    },
+    "Unlock Value & Cancel Scores": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock Value & Cancel Scores"
+          }
+        }
+      }
+    },
+    "Uses recorded renewal dates; variable bills and post-trial charges are estimates.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uses recorded renewal dates; variable bills and post-trial charges are estimates."
+          }
+        }
+      }
+    },
+    "View all": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View all"
+          }
+        }
+      }
+    },
+    "What could you make room for?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What could you make room for?"
+          }
+        }
+      }
+    },
+    "Your Pro access is active": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Pro access is active"
+          }
+        }
+      }
+    },
+    "Your checklist": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your checklist"
+          }
+        }
+      }
+    },
+    "Your controls": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your controls"
+          }
+        }
+      }
+    },
+    "Your data couldn't be opened": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data couldn't be opened"
+          }
+        }
+      }
+    },
+    "Your money,\nwith more meaning.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your money,\nwith more meaning."
+          }
+        }
+      }
+    },
+    "Your space, thoughtfully managed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your space, thoughtfully managed."
+          }
+        }
+      }
+    },
+    "Your space. Your subscriptions.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your space. Your subscriptions."
+          }
+        }
+      }
+    },
+    "subsense": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "subsense"
+          }
+        }
+      }
+    },
+    "£1,400+ / year": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "£1,400+ / year"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
