@@ -2,6 +2,10 @@ import XCTest
 import StoreKitTest
 
 final class SubSenseUITests: XCTestCase {
+    @MainActor private func expectExists(_ element: XCUIElement) async {
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
+        await fulfillment(of: [ready], timeout: 30)
+    }
     @MainActor private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
         for _ in 0..<8 {
             if element.exists && element.isHittable { return }
@@ -62,19 +66,19 @@ final class SubSenseUITests: XCTestCase {
         let monthly = app.buttons["com.subsense.pro.monthly"]
         XCTAssertTrue(monthly.waitForExistence(timeout: 20)); reveal(monthly, in: app); monthly.tap()
         let subscribe = app.buttons["subscribe-selected-plan"]; reveal(subscribe, in: app); subscribe.tap()
-        XCTAssertTrue(app.staticTexts["Your Pro access is active"].waitForExistence(timeout: 20))
+        await expectExists(app.staticTexts["Your Pro access is active"])
         let restore = app.buttons["Restore Purchases"]; reveal(restore, in: app); restore.tap()
-        XCTAssertTrue(app.staticTexts["Pro purchases restored."].waitForExistence(timeout: 20))
+        await expectExists(app.staticTexts["Pro purchases restored."])
         capture("purchase-restored", app)
         try session.expireSubscription(productIdentifier: "com.subsense.pro.monthly")
         app.terminate(); app.launch()
         app.buttons["Settings"].firstMatch.tap()
-        XCTAssertTrue(app.buttons["Discover SubSense Pro"].waitForExistence(timeout: 20))
+        await expectExists(app.buttons["Discover SubSense Pro"])
         _ = try await session.buyProduct(identifier: "com.subsense.pro.annual", options: [])
-        XCTAssertTrue(app.buttons["Manage SubSense Pro"].waitForExistence(timeout: 20))
+        await expectExists(app.buttons["Manage SubSense Pro"])
         let transaction = try XCTUnwrap(session.allTransactions().last(where: { $0.productIdentifier == "com.subsense.pro.annual" }))
         try session.refundTransaction(identifier: transaction.identifier)
-        XCTAssertTrue(app.buttons["Discover SubSense Pro"].waitForExistence(timeout: 20))
+        await expectExists(app.buttons["Discover SubSense Pro"])
     }
     @MainActor func testFreeSubscriptionLimit() throws {
         continueAfterFailure = false

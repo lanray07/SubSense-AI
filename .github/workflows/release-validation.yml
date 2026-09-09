@@ -6,7 +6,7 @@ on:
         description: Acceptance scope
         type: choice
         default: all
-        options: [all, scrolling]
+        options: [all, scrolling, commerce]
 permissions:
   contents: read
 jobs:
@@ -40,6 +40,9 @@ jobs:
         run: |
           set -o pipefail
           TEST_SELECTION=()
+          if [ "$TEST_SUITE" = commerce ]; then
+            TEST_SELECTION=(-only-testing:SubSenseUITests/SubSenseUITests/testPurchaseRestoreAndExpiration)
+          fi
           if [ "$TEST_SUITE" = scrolling ]; then
             TEST_SELECTION=(
               -only-testing:SubSenseUITests/SubSenseUITests/testDarkModeLargeTextAndLandscape
