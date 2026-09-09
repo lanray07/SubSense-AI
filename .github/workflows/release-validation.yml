@@ -13,9 +13,9 @@ on:
         default: all
         options: [all, '18', '26']
       toolchain:
-        description: Xcode pairing for older-runtime diagnostics
+        description: Runtime pairing (legacy uses iOS 18.2; current uses iOS 18.5)
         type: choice
-        default: current
+        default: legacy
         options: [current, paired, legacy]
 permissions:
   contents: read

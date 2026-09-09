@@ -13,13 +13,15 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+      - name: Select release Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.3.app/Contents/Developer
       - name: Core calculations and model tests
         run: swift test
       - name: Build native app for iOS Simulator
         run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination 'generic/platform=iOS Simulator' -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO build
       - name: Pick available iPhone simulator
         run: |
-          ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for group in d["devices"].values() for x in group if "iPhone" in x["name"]))')
+          ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for runtime,group in d["devices"].items() if "iOS-26" in runtime for x in group if "iPhone" in x["name"]))')
           echo "SIMULATOR_ID=$ID" >> "$GITHUB_ENV"
       - name: UI navigation and screenshot tests
         run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$SIMULATOR_ID" -resultBundlePath TestResults ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test
