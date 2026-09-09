@@ -32,6 +32,9 @@ final class SubSenseUITests: XCTestCase {
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Discover SubSense Pro"].tap()
         XCTAssertTrue(app.navigationBars["SubSense Pro"].waitForExistence(timeout: 5))
+        if app.buttons["Retry loading plans"].waitForExistence(timeout: 5) {
+            app.buttons["Retry loading plans"].tap()
+        }
         XCTAssertTrue(app.buttons.containing(NSPredicate(format: "label CONTAINS '1.49'")).firstMatch.waitForExistence(timeout: 20))
         capture("review-pro-features", app)
         app.swipeUp()
