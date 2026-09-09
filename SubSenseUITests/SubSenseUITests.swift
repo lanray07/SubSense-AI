@@ -56,13 +56,20 @@ final class SubSenseUITests: XCTestCase {
     }
     @MainActor func testPurchaseRestoreAndExpiration() async throws {
         continueAfterFailure = false
+        // XCTest installs the app on first launch. Configure StoreKit only after
+        // registration with Launch Services, which older simulators require.
+        let app = XCUIApplication(); app.launchArguments = ["--demo"]; app.launch(); app.terminate()
         let session = try storeSession(); defer { session.resetToDefaultState(); session.clearTransactions() }
-        let app = XCUIApplication(); app.launchArguments = ["--demo"]; app.launch()
+        app.launch()
         XCTAssertTrue(app.buttons["Settings"].firstMatch.waitForExistence(timeout: 20))
         app.buttons["Settings"].firstMatch.tap(); app.buttons["Discover SubSense Pro"].tap()
         let monthly = app.buttons["com.subsense.pro.monthly"]
         XCTAssertTrue(monthly.waitForExistence(timeout: 20)); reveal(monthly, in: app); monthly.tap()
-        let subscribe = app.buttons["subscribe-selected-plan"]; reveal(subscribe, in: app); subscribe.tap()
+        let subscribe = app.buttons["subscribe-selected-plan"]; reveal(subscribe, in: app)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: subscribe)
+        await fulfillment(of: [ready], timeout: 30)
+        capture("purchase-ready", app)
+        subscribe.tap()
         await expectExists(app.staticTexts["Your Pro access is active"])
         let restore = app.buttons["Restore Purchases"]; reveal(restore, in: app); restore.tap()
         await expectExists(app.staticTexts["Pro purchases restored."])
