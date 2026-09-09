@@ -12,13 +12,14 @@ struct ReceiptScannerView: View {
     @State private var editing: Subscription?
     @State private var busy = false
     @State private var error: String?
+    @FocusState private var editingText: Bool
     var body: some View {
         SheetShell(title: "Receipt Scanner") {
             Form {
                 Section {
                     Label("Private by design", systemImage: "lock.shield").font(.headline)
                     Text("Paste a receipt, choose a UTF-8 text file, or select a screenshot. Text recognition and parsing happen on your device. Nothing is saved until you review and confirm.").font(.subheadline).foregroundStyle(.secondary)
-                    TextEditor(text: $text).frame(minHeight: 180).accessibilityLabel("Receipt text")
+                    TextEditor(text: $text).frame(minHeight: 180).accessibilityLabel("Receipt text").focused($editingText)
                     HStack { Button("Import text file") { importing = true }; Spacer(); PhotosPicker("Choose screenshot", selection: $photo, matching: .images) }.disabled(busy)
                 }
                 Section {
@@ -33,7 +34,14 @@ struct ReceiptScannerView: View {
                         Button("Review & edit extracted details") { editing = draft.subscription }
                     }
                 }
-            }.onChange(of: text) { _, _ in draft = nil }
+            }.scrollDismissesKeyboard(.interactively)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done editing receipt") { editingText = false }
+                }
+            }
+            .onChange(of: text) { _, _ in draft = nil }
             .fileImporter(isPresented: $importing, allowedContentTypes: [.plainText]) { result in
                 do {
                     let url = try result.get(); let granted = url.startAccessingSecurityScopedResource(); defer { if granted { url.stopAccessingSecurityScopedResource() } }
@@ -54,6 +62,7 @@ struct ReceiptScannerView: View {
         }
     }
     private func extract() async {
+        editingText = false
         busy = true; error = nil; defer { busy = false }
         do { draft = try await model.ai.extractSubscriptionFromReceipt(text) } catch { self.error = error.localizedDescription }
     }

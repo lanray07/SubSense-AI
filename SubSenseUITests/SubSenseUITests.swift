@@ -5,7 +5,8 @@ final class SubSenseUITests: XCTestCase {
     @MainActor private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
         for _ in 0..<8 {
             if element.exists && element.isHittable { return }
-            app.swipeUp()
+            if app.collectionViews.firstMatch.exists { app.collectionViews.firstMatch.swipeUp() }
+            else { app.swipeUp() }
         }
         XCTAssertTrue(element.exists && element.isHittable)
     }
@@ -97,9 +98,10 @@ final class SubSenseUITests: XCTestCase {
         app.buttons["Settings"].firstMatch.tap(); app.buttons["Import a receipt"].tap()
         let receipt = app.textViews["Receipt text"]
         XCTAssertTrue(receipt.waitForExistence(timeout: 5)); receipt.tap(); receipt.typeText("Example membership\nGBP 19.99\nBilled monthly")
+        app.buttons["Done editing receipt"].tap()
         let extract = app.buttons["Extract subscription"]; reveal(extract, in: app); extract.tap()
         let review = app.buttons["Review & edit extracted details"]
-        XCTAssertTrue(review.waitForExistence(timeout: 10)); reveal(review, in: app); review.tap()
+        reveal(review, in: app); review.tap()
         XCTAssertTrue(app.textFields["Subscription name"].waitForExistence(timeout: 5))
         app.buttons["Cancel"].tap(); app.buttons["Done"].tap()
         app.buttons["Export reports"].tap()
@@ -255,6 +257,8 @@ final class SubSenseUITests: XCTestCase {
         app.buttons["Save"].tap()
         XCTAssertTrue(app.navigationBars["Subscriptions"].waitForExistence(timeout: 5))
         let search = app.searchFields.firstMatch
+        if !search.exists { app.buttons["Search"].firstMatch.tap() }
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap(); search.typeText("Test membership")
         XCTAssertTrue(app.staticTexts["Test membership"].waitForExistence(timeout: 5))
     }
