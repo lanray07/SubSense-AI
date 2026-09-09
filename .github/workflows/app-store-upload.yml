@@ -1,0 +1,77 @@
+name: Archive and upload to App Store Connect
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: app-store-upload
+  cancel-in-progress: false
+jobs:
+  archive:
+    runs-on: macos-15
+    timeout-minutes: 40
+    env:
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select newest installed stable Xcode
+        shell: bash
+        run: |
+          XCODE=$(python3 - <<'PY'
+          import glob, re
+          paths = [p for p in glob.glob('/Applications/Xcode_*.app') if re.search(r'Xcode_\d+(?:\.\d+)*\.app$', p)]
+          print(max(paths, key=lambda p: tuple(map(int, re.search(r'Xcode_([\d.]+)', p)[1].split('.')))))
+          PY
+          )
+          sudo xcode-select -s "$XCODE/Contents/Developer"
+          xcodebuild -version
+      - name: Core tests
+        run: swift test
+      - name: Prepare API credentials and export options
+        env:
+          API_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, plistlib, base64
+          for name in ['APPLE_TEAM_ID', 'API_KEY_ID', 'API_ISSUER_ID', 'API_PRIVATE_KEY']:
+              if not os.environ.get(name): raise SystemExit(f'Missing secret: {name}')
+          key = os.environ['API_PRIVATE_KEY'].strip().replace('\\n', '\n')
+          if '-----BEGIN PRIVATE KEY-----' not in key:
+              key = base64.b64decode(key).decode()
+          path = pathlib.Path(os.environ['RUNNER_TEMP']) / 'AuthKey.p8'
+          path.write_text(key + '\n'); path.chmod(0o600)
+          options = dict(method='app-store-connect', destination='upload', signingStyle='automatic', teamID=os.environ['APPLE_TEAM_ID'], manageAppVersionAndBuildNumber=False, uploadSymbols=True)
+          with open('ExportOptions.plist', 'wb') as f: plistlib.dump(options, f)
+          PY
+      - name: Archive device build
+        run: |
+          set -o pipefail
+          xcodebuild -project SubSense.xcodeproj -scheme SubSense -configuration Release \
+            -destination 'generic/platform=iOS' -archivePath build/SubSense.xcarchive \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER.$GITHUB_RUN_ATTEMPT" \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGNING_ALLOWED=NO \
+            archive 2>&1 | tee archive.log
+      - name: Sign and upload archive
+        run: |
+          set -o pipefail
+          xcodebuild -exportArchive -archivePath build/SubSense.xcarchive \
+            -exportOptionsPlist ExportOptions.plist -exportPath build/export \
+            -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$API_KEY_ID" -authenticationKeyIssuerID "$API_ISSUER_ID" \
+            2>&1 | tee export.log
+          echo 'Archive uploaded to App Store Connect. This does not submit the app for review.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Remove temporary credentials
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: app-store-build-${{ github.run_number }}
+          retention-days: 7
+          path: |
+            archive.log
+            export.log
+            build/SubSense.xcarchive
+            build/export
