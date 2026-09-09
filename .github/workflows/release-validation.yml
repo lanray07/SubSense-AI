@@ -7,6 +7,16 @@ on:
         type: choice
         default: all
         options: [all, scrolling, commerce]
+      runtime:
+        description: iOS runtime scope
+        type: choice
+        default: all
+        options: [all, '18', '26']
+      toolchain:
+        description: Xcode pairing for older-runtime diagnostics
+        type: choice
+        default: current
+        options: [current, paired]
 permissions:
   contents: read
 jobs:
@@ -17,11 +27,13 @@ jobs:
       fail-fast: false
       matrix:
         device: [iPhone-16-Pro, iPad-Pro-13-inch-M4-8GB]
-        os: ['18', '26']
+        os: ${{ fromJSON(inputs.runtime == '18' && '["18"]' || inputs.runtime == '26' && '["26"]' || '["18","26"]') }}
     steps:
       - uses: actions/checkout@v4
-      - name: Select Xcode 26
-        run: sudo xcode-select -s /Applications/Xcode_26.3.app/Contents/Developer
+      - name: Select Xcode
+        env:
+          XCODE_VERSION: ${{ inputs.toolchain == 'paired' && matrix.os == '18' && '16.4' || '26.3' }}
+        run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
       - name: Core tests
         run: swift test
       - name: Create simulator
@@ -65,6 +77,7 @@ jobs:
           find "$HOME/Library/Logs/DiagnosticReports" -name '*SubSense*' -type f -exec cp {} diagnostics/crashes/ \; || true
           if [ -n "$SIMULATOR_ID" ]; then
             xcrun simctl spawn "$SIMULATOR_ID" log show --last 20m --style compact --predicate 'process == "SubSense"' > diagnostics/app.log 2>&1 || true
+            xcrun simctl spawn "$SIMULATOR_ID" log show --last 20m --style compact --predicate 'process == "storekitd" OR process == "appstored" OR subsystem CONTAINS[c] "storekit"' > diagnostics/storekit.log 2>&1 || true
           fi
       - uses: actions/upload-artifact@v4
         if: always()
