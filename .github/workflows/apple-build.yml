@@ -14,7 +14,7 @@ jobs:
           ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for group in d["devices"].values() for x in group if "iPhone" in x["name"]))')
           echo "SIMULATOR_ID=$ID" >> "$GITHUB_ENV"
       - name: UI navigation and screenshot tests
-        run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$SIMULATOR_ID" -resultBundlePath TestResults CODE_SIGNING_ALLOWED=NO test
+        run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$SIMULATOR_ID" -resultBundlePath TestResults ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test
       - uses: actions/upload-artifact@v4
         if: always()
         with:

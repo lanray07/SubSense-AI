@@ -17,7 +17,7 @@ jobs:
           xcrun simctl status_bar "$DEVICE" override --time '9:41' --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
           xcrun simctl ui "$DEVICE" appearance light
       - name: Capture real app screens
-        run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$CAPTURE_DEVICE" -resultBundlePath StoreScreenshots -only-testing:SubSenseUITests/SubSenseUITests/testAppStoreScreenshotSet CODE_SIGNING_ALLOWED=NO test
+        run: xcodebuild -project SubSense.xcodeproj -scheme SubSense -destination "platform=iOS Simulator,id=$CAPTURE_DEVICE" -resultBundlePath StoreScreenshots -only-testing:SubSenseUITests/SubSenseUITests/testAppStoreScreenshotSet ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test
       - name: Export screenshot attachments
         if: always()
         run: xcrun xcresulttool export attachments --path StoreScreenshots.xcresult --output-path screenshots
