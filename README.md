@@ -20,7 +20,7 @@ xcodebuild -project SubSense.xcodeproj -scheme SubSense \
   -destination 'platform=iOS Simulator,name=<installed iPhone simulator>' test
 ```
 
-The GitHub workflow runs core tests, builds the iOS app and runs UI tests with screenshot attachments on macOS. It has been created locally, not dispatched or verified remotely.
+The GitHub workflow runs core tests, builds the iOS app and runs UI tests with screenshot attachments on macOS. On 9 September 2026, the native simulator build and dedicated App Store screenshot capture passed remotely. The broader UI suite still has a failing add-subscription test (the Save button was not found); a successful screenshot capture is not a full release certification. A signed distribution build has not been uploaded to App Store Connect.
 
 On this Windows installation, SwiftPM needs a scratch path outside the spaced workspace path:
 

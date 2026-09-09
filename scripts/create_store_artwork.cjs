@@ -1,0 +1,30 @@
+// Render editable, code-native subscription artwork in the existing brand system.
+const fs = require('fs');
+const path = require('path');
+const sharp = require(process.env.CODEX_NODE_MODULES ? path.join(process.env.CODEX_NODE_MODULES, 'sharp') : 'sharp');
+const out = path.join(__dirname, '..', 'assets', 'app-store', 'subscriptions');
+fs.mkdirSync(out, { recursive: true });
+async function main() {
+  for (const [slug, label, caption] of [['monthly', 'Monthly', 'Clarity, month after month.'], ['annual', 'Annual', 'A year of more clarity.']]) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<defs><radialGradient id="bg" cx="70%" cy="20%" r="100%"><stop stop-color="#355844"/><stop offset=".55" stop-color="#192e26"/><stop offset="1" stop-color="#0c1b15"/></radialGradient><linearGradient id="mint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7f6ce"/><stop offset=".55" stop-color="#cde8ae"/><stop offset="1" stop-color="#8faa78"/></linearGradient><linearGradient id="gold"><stop stop-color="#aa8556"/><stop offset=".5" stop-color="#edddbc"/><stop offset="1" stop-color="#bd9e6d"/></linearGradient></defs>
+<rect width="1024" height="1024" fill="url(#bg)"/>
+<circle cx="820" cy="120" r="365" fill="none" stroke="#cde8ae" stroke-opacity=".08"/>
+<circle cx="820" cy="120" r="300" fill="none" stroke="#cde8ae" stroke-opacity=".08"/>
+<rect x="40" y="40" width="944" height="944" rx="32" fill="none" stroke="${slug === 'annual' ? '#cbb082' : '#cde8ae'}" stroke-opacity=".3"/>
+<text x="512" y="138" text-anchor="middle" fill="#f7f8ef" font-family="Arial" font-size="32" letter-spacing="5">SUBSENSE AI</text>
+<text x="512" y="211" text-anchor="middle" fill="#cde8ae" font-family="Arial" font-size="19" letter-spacing="9">P R O</text>
+<circle cx="512" cy="472" r="189" fill="none" stroke="#07140d" stroke-opacity=".32" stroke-width="45"/>
+<path d="M655 347 A190 190 0 1 0 693 530" fill="none" stroke="url(#mint)" stroke-width="39" stroke-linecap="round"/>
+<path d="M653 525L735 490L727 585Z" fill="url(#mint)"/>
+<path d="M512 373L536 448L611 472L536 497L512 572L487 497L413 472L487 448Z" fill="#f7f8ef"/>
+<path d="M488 472L512 393L536 472L512 551Z" fill="${slug === 'annual' ? 'url(#gold)' : '#e7eedb'}" opacity=".5"/>
+<text x="512" y="777" text-anchor="middle" fill="#f7f8ef" font-family="Georgia" font-size="91">${label}</text>
+<text x="512" y="845" text-anchor="middle" fill="#cbd7cd" font-family="Arial" font-size="26">${caption}</text>
+<path d="M452 901H572" stroke="url(#gold)" stroke-width="2"/>
+</svg>`;
+    fs.writeFileSync(path.join(out, `pro-${slug}.svg`), svg);
+    await sharp(Buffer.from(svg)).flatten({background:'#192e26'}).removeAlpha().png().toFile(path.join(out, `pro-${slug}-1024.png`));
+  }
+}
+main().catch(e=>{console.error(e);process.exit(1)});
