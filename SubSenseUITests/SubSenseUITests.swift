@@ -2,6 +2,111 @@ import XCTest
 import StoreKitTest
 
 final class SubSenseUITests: XCTestCase {
+    @MainActor private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<8 {
+            if element.exists && element.isHittable { return }
+            app.swipeUp()
+        }
+        XCTAssertTrue(element.exists && element.isHittable)
+    }
+    @MainActor private func storeSession() throws -> SKTestSession {
+        let url = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("SubSense/Resources/SubSense.storekit")
+        let session = try SKTestSession(contentsOf: url)
+        session.resetToDefaultState(); session.clearTransactions(); session.disableDialogs = true; session.storefront = "GBR"
+        return session
+    }
+    @MainActor func testFreshInstallPersistenceAndEdit() throws {
+        continueAfterFailure = false
+        let session = try storeSession(); defer { session.resetToDefaultState() }
+        let app = XCUIApplication(); app.launchArguments = ["--uitesting-reset"]; app.launch()
+        XCTAssertTrue(app.buttons["Get Started"].waitForExistence(timeout: 20))
+        capture("onboarding-light", app)
+        app.buttons["Get Started"].tap()
+        for _ in 0..<3 { app.buttons["Next"].tap() }
+        app.buttons["Continue"].tap()
+        XCTAssertTrue(app.buttons["Add My First Subscription"].waitForExistence(timeout: 5))
+        app.buttons["Add My First Subscription"].tap()
+        XCTAssertTrue(app.textFields["Subscription name"].waitForExistence(timeout: 5))
+        app.textFields["Subscription name"].tap(); app.textFields["Subscription name"].typeText("Persistent membership")
+        app.textFields["Price per billing period"].tap(); app.textFields["Price per billing period"].typeText("12.50")
+        app.buttons["Save"].tap()
+        XCTAssertTrue(app.buttons["Subscriptions"].firstMatch.waitForExistence(timeout: 5))
+        app.terminate(); app.launchArguments = []; app.launch()
+        XCTAssertTrue(app.buttons["Subscriptions"].firstMatch.waitForExistence(timeout: 20))
+        app.buttons["Subscriptions"].firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Persistent membership"].firstMatch.waitForExistence(timeout: 5))
+        app.staticTexts["Persistent membership"].firstMatch.tap()
+        app.buttons["Edit"].tap()
+        let field = app.textFields["Subscription name"]
+        field.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+        // Replace through the hardware keyboard to exercise the real editor.
+        field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: "Persistent membership".count))
+        field.typeText("Edited membership")
+        app.buttons["Save"].tap()
+        XCTAssertTrue(app.staticTexts["Edited membership"].firstMatch.waitForExistence(timeout: 5))
+        capture("saved-subscription", app)
+        app.terminate(); app.launch()
+        app.buttons["Subscriptions"].firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Edited membership"].firstMatch.waitForExistence(timeout: 5))
+    }
+    @MainActor func testPurchaseRestoreAndExpiration() throws {
+        continueAfterFailure = false
+        let session = try storeSession(); defer { session.resetToDefaultState(); session.clearTransactions() }
+        let app = XCUIApplication(); app.launchArguments = ["--demo"]; app.launch()
+        XCTAssertTrue(app.buttons["Settings"].firstMatch.waitForExistence(timeout: 20))
+        app.buttons["Settings"].firstMatch.tap(); app.buttons["Discover SubSense Pro"].tap()
+        let monthly = app.buttons["com.subsense.pro.monthly"]
+        XCTAssertTrue(monthly.waitForExistence(timeout: 20)); reveal(monthly, in: app); monthly.tap()
+        let subscribe = app.buttons["subscribe-selected-plan"]; reveal(subscribe, in: app); subscribe.tap()
+        XCTAssertTrue(app.staticTexts["Your Pro access is active"].waitForExistence(timeout: 20))
+        let restore = app.buttons["Restore Purchases"]; reveal(restore, in: app); restore.tap()
+        XCTAssertTrue(app.staticTexts["Pro purchases restored."].waitForExistence(timeout: 20))
+        capture("purchase-restored", app)
+        try session.expireSubscription(productIdentifier: "com.subsense.pro.monthly")
+        app.terminate(); app.launch()
+        app.buttons["Settings"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Discover SubSense Pro"].waitForExistence(timeout: 20))
+        try session.buyProduct(productIdentifier: "com.subsense.pro.annual")
+        XCTAssertTrue(app.buttons["Manage SubSense Pro"].waitForExistence(timeout: 20))
+        let transaction = try XCTUnwrap(session.allTransactions().last)
+        try session.refundTransaction(identifier: transaction.identifier)
+        XCTAssertTrue(app.buttons["Discover SubSense Pro"].waitForExistence(timeout: 20))
+    }
+    @MainActor func testReceiptReviewAndExport() {
+        continueAfterFailure = false
+        let app = XCUIApplication(); app.launchArguments = ["--demo"]; app.launch()
+        XCTAssertTrue(app.buttons["Settings"].firstMatch.waitForExistence(timeout: 20))
+        app.buttons["Settings"].firstMatch.tap(); app.buttons["Import a receipt"].tap()
+        let receipt = app.textViews["Receipt text"]
+        XCTAssertTrue(receipt.waitForExistence(timeout: 5)); receipt.tap(); receipt.typeText("Example membership\nGBP 19.99\nBilled monthly")
+        let extract = app.buttons["Extract subscription"]; reveal(extract, in: app); extract.tap()
+        let review = app.buttons["Review & edit extracted details"]
+        XCTAssertTrue(review.waitForExistence(timeout: 10)); reveal(review, in: app); review.tap()
+        XCTAssertTrue(app.textFields["Subscription name"].waitForExistence(timeout: 5))
+        app.buttons["Cancel"].tap(); app.buttons["Done"].tap()
+        app.buttons["Export reports"].tap()
+        XCTAssertTrue(app.buttons["Prepare export"].waitForExistence(timeout: 5))
+        app.buttons["Prepare export"].tap()
+        XCTAssertTrue(app.buttons["Share or save report"].waitForExistence(timeout: 10))
+        capture("export-ready", app)
+    }
+    @MainActor func testDarkModeLargeTextAndLandscape() {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["--demo", "-AppleInterfaceStyle", "Dark", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch()
+        XCTAssertTrue(app.buttons["Home"].firstMatch.waitForExistence(timeout: 20))
+        capture("accessibility-home-dark", app)
+        app.buttons["Settings"].firstMatch.tap()
+        let privacy = app.buttons["How your data is handled"]; reveal(privacy, in: app); privacy.tap()
+        XCTAssertTrue(app.navigationBars["Your data stays yours"].waitForExistence(timeout: 5))
+        capture("accessibility-privacy-dark", app)
+        app.buttons["Done"].tap()
+        XCUIDevice.shared.orientation = .landscapeLeft
+        defer { XCUIDevice.shared.orientation = .portrait }
+        XCTAssertTrue(app.buttons["Home"].firstMatch.waitForExistence(timeout: 5)); app.buttons["Home"].firstMatch.tap()
+        capture("accessibility-landscape-dark", app)
+    }
     @MainActor func testExpandedStoreScreenshotSet() {
         continueAfterFailure = false
         let app = XCUIApplication()

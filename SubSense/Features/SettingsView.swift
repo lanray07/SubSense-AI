@@ -62,8 +62,8 @@ struct PreferencesView: View {
             Section("Profile") {
                 TextField("Your name (optional)", text: $user.name)
                 Picker("Display & income currency", selection: $user.currency) { ForEach(Locale.commonISOCurrencyCodes.sorted(), id: \.self) { Text($0).tag($0) } }
-                TextField("Monthly savings goal", text: $goal).keyboardType(.decimalPad)
-                TextField("Monthly income (optional)", text: $income).keyboardType(.decimalPad)
+                LabeledContent("Monthly savings goal") { TextField("Amount", text: $goal).keyboardType(.decimalPad).multilineTextAlignment(.trailing).accessibilityLabel("Monthly savings goal") }
+                LabeledContent("Monthly income (optional)") { TextField("Amount", text: $income).keyboardType(.decimalPad).multilineTextAlignment(.trailing).accessibilityLabel("Monthly income (optional)") }
                 Text("Income is stored locally and only affects the score for matching-currency spending. No foreign exchange conversion is performed.").font(.caption).foregroundStyle(.secondary)
             }
             if model.canUsePro {
@@ -126,6 +126,10 @@ struct PrivacyView: View {
                 Section("Third parties") { Text("Apple processes SubSense Pro purchases and receives the information necessary for StoreKit. SubSense does not retrieve subscriptions purchased from other apps. There is no advertising SDK, analytics SDK or external AI upload in this build.") }
                 Section("Your controls") { Text("Enable the device authentication lock and private notification content in Settings. Export a copy or use Delete All Data to remove the portfolio and reminders. Exported files you share and device backups are managed separately by you. Export is also available before deletion without Pro.") }
                 Section("Device backups") { Text("Depending on your device settings, iOS backups may include the local app store. Manage those backups through Apple. Disabling or deleting this app does not cancel any subscription.") }
+                Section("Help & policies") {
+                    Link("Privacy policy", destination: URL(string: "https://lanray07.github.io/SubSense-AI/privacy.html")!)
+                    Link("Contact support", destination: URL(string: "https://lanray07.github.io/SubSense-AI/support.html")!)
+                }
             }
         }
     }

@@ -5,7 +5,7 @@ struct OnboardingView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var step = 0
-    private let titles = ["Take control of your subscriptions.", "Small subscriptions add up.", "Your AI-powered subscription audit", "Never get surprised by a renewal again.", "Your financial data stays yours."]
+    private let titles = ["Take control of your subscriptions.", "Small subscriptions add up.", "Your private subscription audit.", "Meet renewals with a little more calm.", "Your financial data stays yours."]
     private let descriptions = ["Track recurring payments, discover wasted spend, and get intelligent suggestions for reducing your monthly bills.", "A few streaming services. A tool you forgot. A trial that kept going. See the whole picture, in one calm place.", "Understand cost, reported usage, renewal frequency, price changes and possible overlap. Your first audit runs privately on this device using transparent rules.", "Set reminders for upcoming payments, annual renewals and trial endings. Alerts depend on the dates you enter and notification permission.", "Your portfolio is stored on this device. No bank connection. No email account access. No AI uploads. You decide what to add, export or delete."]
     private let symbols = ["arrow.triangle.2.circlepath", "square.stack.3d.up", "sparkles", "bell.badge", "lock.shield"]
     var body: some View {

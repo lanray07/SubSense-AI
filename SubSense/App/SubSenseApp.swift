@@ -23,6 +23,14 @@ struct SubSenseApp: App {
             try ExportService.clean()
             let preview = ProcessInfo.processInfo.arguments.contains("--demo")
             let repository: any PortfolioRepository = preview ? MemoryPortfolioRepository() : try SwiftDataPortfolioRepository()
+            #if DEBUG
+            // Isolated simulator acceptance tests exercise real disk persistence.
+            if ProcessInfo.processInfo.arguments.contains("--uitesting-reset") {
+                try repository.delete()
+                UserDefaults.standard.removeObject(forKey: "onboardingComplete")
+                UserDefaults.standard.removeObject(forKey: "appLockEnabled")
+            }
+            #endif
             let appModel = try AppModel(repository: repository)
             if preview { appModel.startDemo() }
             model = appModel; startupError = nil

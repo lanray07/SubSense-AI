@@ -27,17 +27,17 @@ struct PaywallView: View {
                                     Spacer(); Text(product.displayPrice).font(.title3.weight(.semibold))
                                     Image(systemName: selected?.id == product.id ? "checkmark.circle.fill" : "circle")
                                 }.padding(20).background(Theme.card, in: RoundedRectangle(cornerRadius: 20)).overlay(RoundedRectangle(cornerRadius: 20).stroke(selected?.id == product.id ? Theme.accent : .clear, lineWidth: 1.5))
-                            }.buttonStyle(.plain)
+                            }.buttonStyle(.plain).accessibilityIdentifier(product.id)
                         }
                         if let selected {
-                            Button("Subscribe · \(selected.displayPrice)") { Task { await store.purchase(selected) } }.buttonStyle(PrimaryButtonStyle()).disabled(store.loading)
+                            Button("Subscribe · \(selected.displayPrice)") { Task { await store.purchase(selected) } }.buttonStyle(PrimaryButtonStyle()).disabled(store.loading).accessibilityIdentifier("subscribe-selected-plan")
                             Text("Auto-renews at \(selected.displayPrice) \(selected.id.hasSuffix("annual") ? "per year" : "per month") unless cancelled at least 24 hours before the current period ends. Manage or cancel in your Apple Account settings. Payment is charged to your Apple Account.").font(.caption).foregroundStyle(.secondary)
                         } else if !store.loading { Button("Retry loading plans") { Task { await store.loadProducts() } }.buttonStyle(.bordered) }
                     }
                     if let message = store.message { Text(message).font(.subheadline).foregroundStyle(.secondary) }
                     Button("Restore Purchases") { Task { await store.restore() } }.disabled(store.loading).frame(maxWidth: .infinity)
                     HStack { Button("Terms") { legal = .terms }; Spacer(); Button("Privacy Policy") { legal = .privacy } }.font(.caption)
-                    Text("Free includes five subscriptions, basic insights and renewal reminders. No introductory trial is configured in this build.").font(.caption).foregroundStyle(.secondary)
+                    Text("Free includes five subscriptions, basic insights and renewal reminders. Choose a plan when you're ready for more.").font(.caption).foregroundStyle(.secondary)
                 }.padding(26).frame(maxWidth: 600).frame(maxWidth: .infinity)
             }.background(Theme.canvas).manageSubscriptionsSheet(isPresented: $manage)
                 .sheet(item: $legal) { page in

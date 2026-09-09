@@ -45,7 +45,7 @@ final class StoreManager {
             case .success(let result):
                 guard case .verified(let transaction) = result else { message = "The purchase could not be verified. Please restore purchases or contact Apple Support."; return }
                 await refreshEntitlements(); await transaction.finish()
-                message = "Your Pro access is ready."
+                message = hasPro ? "Your Pro access is ready." : "Your purchase is being confirmed. Try Restore Purchases if access doesn't update."
             case .pending: message = "Purchase awaiting approval. Access updates automatically after approval."
             case .userCancelled: break
             @unknown default: message = "The purchase could not be completed. Please try again."
