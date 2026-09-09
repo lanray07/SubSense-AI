@@ -2,7 +2,7 @@
 
 Native iPhone and iPad subscription manager and savings copilot. SwiftUI, SwiftData, Apple Charts, StoreKit 2, Vision and local notifications. Minimum iOS 17. No runtime third-party dependencies or embedded credentials.
 
-**Build status:** The portable Swift tests, native simulator build, and device Release archive have passed on GitHub's macOS runners. Native screenshot captures have also passed on iPhone and iPad. Xcode is unavailable on the local Windows host, so Apple builds run remotely. Known UI failures remain; this is **not a verified App Store-ready release**. See [validation and release work](docs/VALIDATION.md) and [GitHub distribution](docs/GITHUB_DISTRIBUTION.md).
+**Release status:** Version 1.0 (4.1), the Pro group and both subscription plans were submitted on 9 September 2026 and are **Waiting for Review**. The 20 core tests passed; the full UI suite passed on iPhone and iPad with iOS 26, and purchase/restore/expiry/refund flows passed on both devices with iOS 18.2 and 26. See [validation evidence and the iOS 18.5 simulator limitation](docs/VALIDATION.md) and [GitHub distribution](docs/GITHUB_DISTRIBUTION.md).
 
 ## Open on a Mac
 
@@ -20,7 +20,7 @@ xcodebuild -project SubSense.xcodeproj -scheme SubSense \
   -destination 'platform=iOS Simulator,name=<installed iPhone simulator>' test
 ```
 
-The GitHub workflow runs core tests, builds the iOS app and runs UI tests with screenshot attachments on macOS. On 9 September 2026, the native simulator build and dedicated App Store screenshot capture passed remotely. The broader UI suite still has failures in add-subscription and calendar navigation; a successful screenshot capture is not a full release certification. Xcode 26.3 successfully archived, signed, and uploaded version 1.0, build 2.1 to App Store Connect in [distribution run 34340054417](https://github.com/lanray07/SubSense-AI/actions/runs/34340054417). This upload does not submit the app for review or release it.
+The GitHub workflows run core tests, build the iOS app and run UI tests with screenshot attachments on macOS. Calendar navigation, editor validation, receipt review, persistence, large text and landscape fixes have passed native acceptance tests. The store asset set contains eight iPhone screenshots, eight 13-inch iPad screenshots and two subscription artworks. Xcode 26.3 archived, signed and uploaded build 4.1 in [distribution run 34378446730](https://github.com/lanray07/SubSense-AI/actions/runs/34378446730). Upload and App Review submission are separate steps; the current review status is recorded in the distribution document.
 
 On this Windows installation, SwiftPM needs a scratch path outside the spaced workspace path:
 
