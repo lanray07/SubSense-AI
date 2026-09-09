@@ -1,6 +1,12 @@
 name: Release validation
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Acceptance scope
+        type: choice
+        default: all
+        options: [all, scrolling]
 permissions:
   contents: read
 jobs:
@@ -29,13 +35,24 @@ jobs:
           xcrun simctl boot "$DEVICE"
           xcrun simctl bootstatus "$DEVICE" -b
       - name: Native UI tests
+        env:
+          TEST_SUITE: ${{ inputs.suite }}
         run: |
           set -o pipefail
+          TEST_SELECTION=()
+          if [ "$TEST_SUITE" = scrolling ]; then
+            TEST_SELECTION=(
+              -only-testing:SubSenseUITests/SubSenseUITests/testDarkModeLargeTextAndLandscape
+              -only-testing:SubSenseUITests/SubSenseUITests/testPurchaseRestoreAndExpiration
+              -only-testing:SubSenseUITests/SubSenseUITests/testReceiptReviewAndExport
+            )
+          fi
           xcodebuild -project SubSense.xcodeproj -scheme SubSense \
             -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
             -parallel-testing-enabled NO -test-timeouts-enabled YES \
             -default-test-execution-time-allowance 240 -maximum-test-execution-time-allowance 300 \
             -resultBundlePath ReleaseTests \
+            "${TEST_SELECTION[@]}" \
             ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO test 2>&1 | tee tests.log
       - name: Collect screenshots and crash diagnostics
         if: always()

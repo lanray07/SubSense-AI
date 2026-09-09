@@ -5,7 +5,10 @@ final class SubSenseUITests: XCTestCase {
     @MainActor private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
         for _ in 0..<8 {
             if element.exists && element.isHittable { return }
-            if app.collectionViews.firstMatch.exists { app.collectionViews.firstMatch.swipeUp() }
+            // iPad keeps the presenting view in its accessibility tree. Scroll
+            // the frontmost sheet, rather than the Settings list behind it.
+            if app.scrollViews.count > 0 { app.scrollViews.element(boundBy: app.scrollViews.count - 1).swipeUp() }
+            else if app.collectionViews.count > 0 { app.collectionViews.element(boundBy: app.collectionViews.count - 1).swipeUp() }
             else { app.swipeUp() }
         }
         XCTAssertTrue(element.exists && element.isHittable)
