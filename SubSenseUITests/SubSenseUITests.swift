@@ -1,8 +1,18 @@
 import XCTest
+import StoreKitTest
 
 final class SubSenseUITests: XCTestCase {
-    @MainActor func testAppStoreScreenshotSet() {
+    @MainActor func testAppStoreScreenshotSet() throws {
         continueAfterFailure = false
+        let configurationURL = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("SubSense/Resources/SubSense.storekit")
+        let storeSession = try SKTestSession(contentsOf: configurationURL)
+        storeSession.resetToDefaultState()
+        storeSession.clearTransactions()
+        storeSession.disableDialogs = true
+        storeSession.storefront = "GBR"
+        defer { storeSession.resetToDefaultState() }
         let app = XCUIApplication()
         app.launchArguments = ["--demo"]
         app.launch()
@@ -22,6 +32,7 @@ final class SubSenseUITests: XCTestCase {
         app.tabBars.buttons["Settings"].tap()
         app.buttons["Discover SubSense Pro"].tap()
         XCTAssertTrue(app.navigationBars["SubSense Pro"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons.containing(NSPredicate(format: "label CONTAINS '1.49'")).firstMatch.waitForExistence(timeout: 20))
         capture("review-pro-features", app)
         app.swipeUp()
         capture("review-pro-purchase", app)
