@@ -30,6 +30,10 @@ final class SubSenseUITests: XCTestCase {
             XCTAssertTrue(button.waitForExistence(timeout: 5))
             button.tap()
             XCTAssertTrue(app.navigationBars[title].waitForExistence(timeout: 5))
+            if name == "store-06-simulator" {
+                XCTAssertTrue(app.switches.firstMatch.waitForExistence(timeout: 5))
+                app.switches.firstMatch.tap()
+            }
             capture(name, app)
             app.buttons["Done"].firstMatch.tap()
         }
