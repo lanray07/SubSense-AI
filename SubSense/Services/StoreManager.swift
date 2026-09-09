@@ -38,10 +38,11 @@ final class StoreManager {
         }
         hasPro = active
     }
-    func purchase(_ product: Product) async {
+    func purchase(_ action: @MainActor () async throws -> Product.PurchaseResult) async {
+        guard !loading else { return }
         loading = true; message = nil; defer { loading = false }
         do {
-            switch try await product.purchase() {
+            switch try await action() {
             case .success(let result):
                 guard case .verified(let transaction) = result else { message = "The purchase could not be verified. Please restore purchases or contact Apple Support."; return }
                 await refreshEntitlements(); await transaction.finish()

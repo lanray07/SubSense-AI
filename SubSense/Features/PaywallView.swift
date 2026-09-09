@@ -3,6 +3,7 @@ import StoreKit
 
 struct PaywallView: View {
     @Environment(StoreManager.self) private var store
+    @Environment(\.purchase) private var purchaseAction
     @State private var selectedID = "com.subsense.pro.annual"
     @State private var manage = false
     @State private var legal: LegalPage?
@@ -30,7 +31,7 @@ struct PaywallView: View {
                             }.buttonStyle(.plain).accessibilityIdentifier(product.id)
                         }
                         if let selected {
-                            Button("Subscribe · \(selected.displayPrice)") { Task { await store.purchase(selected) } }.buttonStyle(PrimaryButtonStyle()).disabled(store.loading).accessibilityIdentifier("subscribe-selected-plan")
+                            Button("Subscribe · \(selected.displayPrice)") { Task { await store.purchase { try await purchaseAction(selected) } } }.buttonStyle(PrimaryButtonStyle()).disabled(store.loading).accessibilityIdentifier("subscribe-selected-plan")
                             Text("Auto-renews at \(selected.displayPrice) \(selected.id.hasSuffix("annual") ? "per year" : "per month") unless cancelled at least 24 hours before the current period ends. Manage or cancel in your Apple Account settings. Payment is charged to your Apple Account.").font(.caption).foregroundStyle(.secondary)
                         } else if !store.loading { Button("Retry loading plans") { Task { await store.loadProducts() } }.buttonStyle(.bordered) }
                     }
