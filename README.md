@@ -2,7 +2,7 @@
 
 Native iPhone and iPad subscription manager and savings copilot. SwiftUI, SwiftData, Apple Charts, StoreKit 2, Vision and local notifications. Minimum iOS 17. No runtime third-party dependencies or embedded credentials.
 
-**Release status:** Version 1.0 (4.1), the Pro group and both subscription plans were submitted on 9 September 2026 and are **Waiting for Review**. The 20 core tests passed; the full UI suite passed on iPhone and iPad with iOS 26, and purchase/restore/expiry/refund flows passed on both devices with iOS 18.2 and 26. See [validation evidence and the iOS 18.5 simulator limitation](docs/VALIDATION.md) and [GitHub distribution](docs/GITHUB_DISTRIBUTION.md).
+**Release status:** Version 1.0 (4.1) was rejected on 15 September 2026 under Guideline 4.3(a). The Pro group and both plans remain in the unresolved submission. A clarification response is prepared before any resubmission. The 20 core tests passed; the full UI suite passed on iPhone and iPad with iOS 26, and purchase/restore/expiry/refund flows passed on both devices with iOS 18.2 and 26. See [App Review research and response](docs/APP_REVIEW_4_3_RESPONSE.md), [validation evidence and the iOS 18.5 simulator limitation](docs/VALIDATION.md), and [GitHub distribution](docs/GITHUB_DISTRIBUTION.md).
 
 ## Open on a Mac
 

@@ -1,6 +1,6 @@
 # Validation and release status
 
-Updated 9 September 2026. Version 1.0 (4.1), the Pro group and both plans were submitted at 18:36 BST and are **Waiting for Review**. Apple builds and simulator tests run on GitHub macOS runners because the local workspace is Windows.
+Updated 19 September 2026. Version 1.0 (4.1) was rejected on 15 September under Guideline 4.3(a); the Pro group and both plans remain in the unresolved submission. This review outcome does not change the executed technical checks below. Apple builds and simulator tests run on GitHub macOS runners because the local workspace is Windows.
 
 ## Executed acceptance checks
 
