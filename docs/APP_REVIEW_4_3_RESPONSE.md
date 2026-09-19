@@ -1,8 +1,8 @@
 # App Review 4.3(a) response
 
-Prepared 19 September 2026 for submission `e2f534c9-77c8-413e-ad6a-6970f05ab4fa`. This is a draft for the App Store Connect Resolution Center. Do not resubmit build 4.1 until App Review answers the clarification request or the app receives material changes that address the identified match.
+Prepared and sent through the App Store Connect Resolution Center on 19 September 2026 at 14:18 BST for submission `e2f534c9-77c8-413e-ad6a-6970f05ab4fa`. App Store Connect confirmed the delivery by showing the developer reply in **Messages (2)**. Do not resubmit build 4.1 until App Review answers the clarification request or the app receives material changes that address the identified match.
 
-## Draft reply
+## Reply sent to App Review
 
 Hello App Review,
 
