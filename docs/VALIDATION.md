@@ -1,6 +1,6 @@
 # Validation and release status
 
-Updated 19 September 2026. Version 1.0 (4.1) was rejected on 15 September under Guideline 4.3(a); the Pro group and both plans remain in the unresolved submission. This review outcome does not change the executed technical checks below. Apple builds and simulator tests run on GitHub macOS runners because the local workspace is Windows.
+Updated 26 September 2026. Version 1.0 (5.1), the Pro group, and both plans were resubmitted together and are Waiting for Review. Build 5.1 was produced by [distribution run 36244614984](https://github.com/lanray07/SubSense-AI/actions/runs/36244614984), which passed all 20 core tests before Xcode archived, signed, and uploaded the app. Apple builds and simulator tests run on GitHub macOS runners because the local workspace is Windows.
 
 ## Executed acceptance checks
 
